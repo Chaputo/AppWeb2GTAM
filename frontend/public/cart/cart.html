@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link rel="icon" href="/assets/icono.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Carrito</title>
+</head>
+<body data-bs-theme="light">
+
+  <header></header>
+
+  <div id="modalContainer"></div>
+
+  <input type="hidden" id="pageName" value="Carrito">
+
+
+  <div class="container mt-5">
+    <h1 class="text-center">Tu Carrito de Compras</h1>
+    <div class="row">
+        
+
+        <!-- Columna derecha -->
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Resumen de Compra</div>
+                <div class="card-body">
+                    <!-- Lista de productos en el resumen -->
+                    <div id="cartSummary">
+                        <div id="carrito-container"></div>
+                    </div>
+                    <hr>
+                    <!-- Total -->
+                    <h4>Total: <span id="cartTotal">$</span></h4>
+                    <!-- Botón de finalizar compra -->
+                    <a href="#" class="btn btn-success w-100 mt-3">Finalizar Compra</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+  <footer class="bg-dark text-light mt-5 p-4 text-center">
+    <p>&copy; 2024 GTA Market. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Script para manipular el carrito -->
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  function updateCart() {
+    const cartItemsContainer = document.getElementById('carrito-container');
+    const cartTotal = document.getElementById('cartTotal');
+    cartItemsContainer.innerHTML = '';
+
+    let total = 0;
+
+    cart.forEach((product, index) => {
+      const productTotal = product.price * product.quantity;
+      total += productTotal;
+
+      const row = document.createElement('div');
+      row.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <img src="${product.image}" alt="${product.title}" style="width: 50px;">
+          <span>${product.title}</span>
+          <span>$${product.price}</span>
+          <div class="d-flex align-items-center">
+            <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, -1)">-</button>
+            <input type="number" value="${product.quantity}" readonly class="form-control text-center mx-1" style="width: 50px;">
+            <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, 1)">+</button>
+          </div>
+          <span>$${productTotal.toFixed(2)}</span>
+          <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">Eliminar</button>
+        </div>
+      `;
+      cartItemsContainer.appendChild(row);
+    });
+
+    cartTotal.textContent = total.toFixed(2);
+  }
+
+  function updateQuantity(index, change) {
+    if (cart[index].quantity + change >= 0) {
+      cart[index].quantity += change;
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCart();
+    }
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+  }
+
+  updateCart();
+  </script>
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="cards_cart.js" defer></script>
+    <script src="navbar_cart.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+[
+    {
+      "titulo": "Grand Theft Auto V",
+      "descripcion": "Grand Theft Auto V es un videojuego de acción-aventura de mundo abierto desarrollado por Rockstar North y distribuido por Rockstar Games.",
+      "precio": "49.99",
+      "imagen": "https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2014/11/410090-analisis-gta-v-ps4-xbox-one-pc.png?tf=3840x",
+      "categoria": "Videojuegos",
+      "id": "1"
+    },
+    {
+      "titulo": "Grand Theft Auto IV",
+      "descripcion": "Grand Theft Auto IV es un videojuego de acción-aventura de mundo abierto desarrollado por Rockstar North y distribuido por Rockstar Games.       Se lanzó en 2008 y está ambientado en Liberty City, una versión ficticia de Nueva York.",
+      "precio": "29.99",
+      "imagen": "https://media.vandal.net/m/11-2021/2021111011365954_1.jpg",
+      "categoria": "Videojuegos",
+      "id": "2"
+    },
+    {
+      "titulo": "Grand Theft Auto III",
+      "descripcion": "Grand Theft Auto III es un videojuego de acción de mundo abierto desarrollado por Rockstar North y lanzado en 2001. Ambientado en Liberty City, sigue a Claude en su búsqueda de venganza.",
+      "precio": "39.99",
+      "imagen": "https://staticg.sportskeeda.com/editor/2023/10/c6aa9-16962843512836-1920.jpg",
+      "categoria": "Videojuegos",
+      "id": "3"
+    },
+    {
+        "titulo": "Grand Theft Auto II",
+        "descripcion": "Grand Theft Auto 2 es un videojuego de acción de mundo abierto desarrollado por DMA Design y lanzado en 1999. Ambientado en una ciudad futurista, el jugador controla a Claude Speed en su ascenso dentro del crimen organizado.",
+        "precio": "39.99",
+        "imagen": "https://i.ytimg.com/vi/3FzriRcKwjg/maxresdefault.jpg",
+        "categoria": "Videojuegos",
+        "id": "4"
+      },
+      {
+        "titulo": "Grand Theft Auto I",
+        "descripcion": "Grand Theft Auto es un videojuego de acción y mundo abierto desarrollado por DMA Design y lanzado en 1997. Ambientado en tres ciudades ficticias, el jugador asume el rol de un criminal en busca de poder y dinero.",
+        "precio": "49.99",
+        "imagen": "https://i.ytimg.com/vi/ahOIJNLLtkI/maxresdefault.jpg",
+        "categoria": "Videojuegos",
+        "id": "5"
+      },
+      {
+        "titulo": "Grand Theft Auto: San Andreas",
+        "descripcion": "Grand Theft Auto: San Andreas es un videojuego de acción y mundo abierto desarrollado por Rockstar North y lanzado en 2004. Ambientado en el estado ficticio de San Andreas, el jugador controla a Carl Johnson en su regreso a Los Santos para recuperar el control de su familia y su barrio.",
+        "precio": "29.99",
+        "imagen": "https://rockstarintel.com/wp-content/uploads/2024/08/gta-sa-logo-2.webp",
+        "categoria": "Videojuegos",
+        "id": "6"
+      },
+      {
+        "titulo": "Grand Theft Auto: Vice City",
+        "descripcion": "Grand Theft Auto: Vice City es un videojuego de acción y mundo abierto desarrollado por Rockstar North y lanzado en 2002. Ambientado en una ciudad inspirada en Miami, el jugador controla a Tommy Vercetti mientras asciende en el mundo del crimen.",
+        "precio": "39.99",
+        "imagen": "https://www.infobae.com/resizer/v2/2FAERWJZAFFJTDMSWQJ5EJCAG4.png?auth=da26b798974ec6678c63a3fc8024aec0e5122462a5296fda460f994743c7a781&smart=true&width=1200&height=675&quality=85",
+        "categoria": "Videojuegos",
+        "id": "7"
+      },
+      {
+          "titulo": "Grand Theft Auto: Liberty City Stories",
+          "descripcion": "Grand Theft Auto: Liberty City Stories es un videojuego de acción y mundo abierto desarrollado por Rockstar Leeds y lanzado en 2005. Ambientado en Liberty City, el jugador controla a Toni Cipriani mientras recupera su lugar en la familia criminal Leone.",
+          "precio": "39.99",
+          "imagen": "https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1455202935.jpg",
+          "categoria": "Videojuegos",
+          "id": "8"
+      },{
+        "titulo": "Grand Theft Auto: Vice City Stories",
+        "descripcion": "Grand Theft Auto: Vice City Stories es un videojuego de acción y mundo abierto desarrollado por Rockstar Leeds y lanzado en 2006. Ambientado en Vice City, el jugador controla a Victor Vance mientras construye su propio imperio criminal.",
+        "precio": "49.99",
+        "imagen": "https://i.ytimg.com/vi/YT2ciamn7_o/maxresdefault.jpg",
+        "categoria": "Videojuegos",
+        "id": "9"
+      },
+      {
+        "titulo": "Grand Theft Auto: London 1969",
+        "descripcion": "Grand Theft Auto: London 1969 es un videojuego de acción y mundo abierto desarrollado por DMA Design y lanzado en 1999. Ambientado en Londres durante los años 60, el jugador asume el rol de un criminal en busca de poder y respeto.",
+        "precio": "29.99",
+        "imagen": "https://static.cdnvia.com/pics/juegos/420/1260-gta-london-1969-game.jpg",
+        "categoria": "Videojuegos",
+        "id": "10"
+      },
+      {
+        "titulo": "Grand Theft Auto: London 1961",
+        "descripcion": "Grand Theft Auto: London 1961 es un videojuego de acción y mundo abierto desarrollado por DMA Design y lanzado en 1999. Ambientado en Londres en los años 60, el jugador asume el rol de un criminal en busca de nuevas oportunidades.",
+        "precio": "39.99",
+        "imagen": "https://upload.wikimedia.org/wikipedia/fr/0/03/Grand_Theft_Auto_London_Logo.png",
+        "categoria": "Videojuegos",
+        "id": "11"
+      },
+      {
+          "titulo": "Remera Blanca Lisa SA",
+          "descripcion": "Una remera lisa blanca es una prenda básica, cómoda y versátil, hecha generalmente de algodón suave. Ideal para cualquier ocasión, combina fácilmente con todo tipo de estilos y colores.",
+          "precio": "39.99",
+          "imagen": "https://http2.mlstatic.com/D_690585-MLA47965504388_102021-O.jpg",
+          "categoria": "Ropa",
+          "id": "12"
+      },
+      {
+        "titulo": "Remera Blanca Lisa VC",
+        "descripcion": "Una remera lisa blanca es una prenda básica, cómoda y versátil, hecha generalmente de algodón suave. Ideal para cualquier ocasión, combina fácilmente con todo tipo de estilos y colores.",
+        "precio": "49.99",
+        "imagen": "https://http2.mlstatic.com/D_662577-MLA47965500945_102021-O.jpg",
+        "categoria": "Ropa",
+        "id": "13"
+      },
+      {
+        "titulo": "Remera Negra RS",
+        "descripcion": "Una remera lisa negra es una prenda clásica, moderna y versátil, confeccionada comúnmente en algodón. Perfecta para cualquier ocasión, aporta un estilo elegante y combina con todo tipo de atuendos.",
+        "precio": "29.99",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_890967-MLA72172152664_102023-O.webp",
+        "categoria": "Ropa",
+        "id": "14"
+      },
+      {
+        "titulo": "Set GTA V",
+        "descripcion": "Un set de remera, gorra y botella es el complemento perfecto para un look casual y funcional. La remera, cómoda y estilizada, se combina con la gorra para proteger del sol, mientras que la botella asegura hidratación durante todo el día. Ideal para quienes buscan practicidad y estilo en un solo conjunto.",
+        "precio": "39.99",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_706342-MLA69531606171_052023-O.webp",
+        "categoria": "Ropa",
+        "id": "15"
+      },
+      {
+        "titulo": "Remera Personalizada a pedido",
+        "descripcion": "Las remeras personalizadas son prendas únicas que permiten expresar estilo y personalidad a través de diseños, gráficos o mensajes específicos. Hechas de materiales cómodos como algodón, son perfectas para eventos, regalos o para destacar en el día a día con un toque original.",
+        "precio": "39.99",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_737692-MLA31115042031_062019-O.webp",
+        "categoria": "Ropa",
+        "id": "16"
+      },
+      {
+        "titulo": "Gorra Negra LS",
+        "descripcion": "Una gorra negra de Los Santos es un accesorio con estilo urbano, inspirado en el mundo de Grand Theft Auto. Con un diseño moderno y ajustable, esta gorra agrega un toque de actitud y distinción a cualquier look, perfecta para los fanáticos del videojuego o quienes buscan un toque streetwear único.",
+        "precio": "49.99",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_966536-MLA49868176465_052022-O.webp",
+        "categoria": "Ropa",
+        "id": "17"
+      },
+      {
+        "titulo": "Gorra Negra GTA",
+        "descripcion": "Una gorra de GTA es un accesorio icónico que refleja el estilo urbano y la esencia de la saga Grand Theft Auto. Con un diseño moderno y ajustable, esta gorra es perfecta para los fanáticos del juego, agregando un toque de actitud y personalidad a cualquier outfit.",
+        "precio": "29.99",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_636121-MLA31856614409_082019-O.webp",
+        "categoria": "Ropa",
+        "id": "18"
+      },
+      {
+        "titulo": "Gorra Roja Wasted",
+        "descripcion": "Una gorra roja de GTA es un accesorio vibrante que combina estilo urbano con la esencia de la famosa saga Grand Theft Auto. Con un diseño llamativo y ajustable, esta gorra es ideal para los fanáticos del juego que buscan destacar su amor por GTA mientras lucen un toque moderno y lleno de actitud.",
+        "precio": "39.99",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_873480-MLA79274784120_092024-O.webp",
+        "categoria": "Ropa",
+        "id": "19"
+      },
+      {
+        "titulo": "Gorra Personalizada a pedido",
+        "descripcion": "Las gorras personalizadas son accesorios únicos que permiten expresar tu estilo y personalidad a través de diseños, logotipos o mensajes exclusivos. Hechas de materiales cómodos y ajustables, son perfectas para quienes buscan destacar con un toque individual en su atuendo, ya sea para eventos, equipos o como parte de un look diario.",
+        "precio": "39.99",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_715306-MLA31856598478_082019-O.webp",
+        "categoria": "Ropa",
+        "id": "20"
+      },
+      {
+        "titulo": "Set Completo GTA",
+        "descripcion": "Un set de 4 gorras de GTA ofrece una variedad de estilos inspirados en la icónica saga Grand Theft Auto. Cada gorra, con diseños únicos y ajustables, permite a los fanáticos del juego lucir su pasión por GTA de diferentes maneras, agregando un toque urbano y distintivo a cualquier outfit. Perfecto para quienes buscan versatilidad y actitud en su look diario.",
+        "precio": "49.99",
+        "imagen": "https://http2.mlstatic.com/D_Q_NP_2X_973358-MLA31011641849_062019-T.webp",
+        "categoria": "Ropa",
+        "id": "21"
+      },
+      {
+        "titulo": "Kubrik GTA x5",
+        "descripcion": "Un set de 5 muñecos de GTA 4 es una colección única de figuras detalladas inspiradas en los personajes más icónicos del videojuego Grand Theft Auto IV. Perfectas para los fanáticos de la saga, estas figuras capturan la esencia del mundo de Liberty City y son ideales para exhibir en cualquier colección, aportando un toque de nostalgia y estilo.",
+        "precio": "29.99",
+        "imagen": "https://media.vandal.net/m/8-2018/2018831164916_1.jpg",
+        "categoria": "coleccionables",
+        "id": "22"
+      },
+      {
+        "titulo": "Claude Speed Set GTA III",
+        "descripcion": "Un muñeco de Claude Speed coleccionable es una figura detallada que representa al protagonista de Grand Theft Auto III. Perfecto para los fanáticos de la saga, este muñeco captura la esencia del personaje y se convierte en una pieza imprescindible para cualquier colección, destacando por su diseño y calidad.",
+        "precio": "39.99",
+        "imagen": "https://i.pinimg.com/originals/3b/90/5a/3b905a6ce63203d8667ba4a7ff0d90ec.jpg",
+        "categoria": "coleccionables",
+        "id": "23"
+      },
+      {
+          "titulo": "Mike SET GTA V",
+          "descripcion": "Un muñeco de Michael De Santa coleccionable es una figura detallada que representa a uno de los protagonistas de Grand Theft Auto V. Con un diseño fiel al personaje, esta figura es ideal para los fanáticos del juego, añadiendo un toque único y nostálgico a cualquier colección de GTA V. Perfecta para exhibir y disfrutar de la esencia del mundo de Los Santos.",
+          "precio": "39.99",
+          "imagen": "https://http2.mlstatic.com/D_NQ_NP_745626-MLM54510461841_032023-O.webp",
+          "categoria": "coleccionables",
+          "id": "24"
+      },
+      {
+          "titulo": "Trevor SET GTA V",
+          "descripcion": "Un muñeco de Trevor Phillips coleccionable es una figura detallada que captura la esencia del impredecible y excéntrico personaje de Grand Theft Auto V. Con un diseño fiel al protagonista, esta figura es ideal para los fanáticos del juego, ofreciendo una pieza única para cualquier colección de GTA V y un toque de locura característica de Trevor. Perfecta para exhibir y disfrutar del estilo salvaje de Los Santos.",
+          "precio": "39.99",
+          "imagen": "https://i.ebayimg.com/thumbs/images/g/cNsAAOSwSQlmRtKm/s-l640.jpg",
+          "categoria": "coleccionables",
+          "id": "25"
+      },
+      {
+          "titulo": "RC BANDITO GTA V",
+          "descripcion": "Un auto RC Bandido es un vehículo teledirigido inspirado en el icónico automóvil de Grand Theft Auto: Vice City. Con un diseño compacto y detalles realistas, este auto te ofrece la oportunidad de recrear emocionantes carreras y misiones del juego en la vida real. Ideal para los fanáticos de GTA, este auto RC combina diversión y nostalgia en un solo juguete.",
+          "precio": "39.99",
+          "imagen": "https://i.ytimg.com/vi/QXuXacBAHTg/maxresdefault.jpg",
+          "categoria": "coleccionables",
+          "id": "26"
+      },
+      {
+          "titulo": "Autos historia GTA SAGA",
+          "descripcion": "Los autos de colección de GTA V son réplicas detalladas de los vehículos icónicos del juego. Perfectos para fanáticos, estos modelos capturan la esencia de Los Santos y son ideales para exhibir o agregar a cualquier colección.",
+          "precio": "39.99",
+          "imagen": "https://preview.redd.it/xwenlpszna0e1.jpeg?auto=webp&s=ab27e50520d1d2565cc7e205dc9b17665ad8f465",
+          "categoria": "coleccionables",
+          "id": "27"
+      },
+      {
+          "titulo": "GTA Spano GTA V miniatura",
+          "descripcion": "La miniatura del GTA Spano de GTA V es una réplica detallada del exclusivo superdeportivo del juego. Con un diseño preciso y realista, esta pieza es perfecta para los fanáticos de GTA V que desean agregar un toque de lujo y velocidad a su colección.",
+          "precio": "39.99",
+          "imagen": "https://i.ebayimg.com/images/g/m00AAOSwtb9j68I3/s-l1200.jpg",
+          "categoria": "coleccionables",
+          "id": "28"
+      },
+      {
+          "titulo": "Peluche CHOP",
+          "descripcion": "Un peluche de Chop, el perro de Franklin en GTA V, es una figura suave y adorable que captura la esencia del fiel compañero de Franklin. Perfecto para los fanáticos del juego, este peluche ofrece una forma divertida y nostálgica de tener a Chop siempre cerca. Ideal para coleccionar o regalar.",
+          "precio": "39.99",
+          "imagen": "https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1385050364.jpg",
+          "categoria": "coleccionables",
+          "id": "29"
+      },
+      {
+          "titulo": "GTA Edición Coleccionista",
+          "descripcion": "El set de soundtrack coleccionista de GTA es una edición especial que incluye las bandas sonoras más icónicas de la saga. Con discos que capturan la esencia musical de los diferentes títulos de Grand Theft Auto, este set es perfecto para los fanáticos de la serie que desean revivir las canciones y atmosferas de los mundos de GTA. Ideal para coleccionar y disfrutar de la música que define el juego.",
+          "precio": "39.99",
+          "imagen": "https://www.playnplay.net/wp-content/uploads/2016/06/grand-theft-auto-collectors-edition-ps1-2.jpg",
+          "categoria": "coleccionables",
+          "id": "30"
+      },
+      {
+          "titulo": "Colección saga Completa 2D 3D",
+          "descripcion": "El soundtrack de toda la saga de GTA es una colección completa que reúne las bandas sonoras de todos los juegos de Grand Theft Auto. Con una amplia selección de géneros musicales que capturan la esencia de cada título, este set es perfecto para los fanáticos que quieren revivir la música que ha marcado la historia del videojuego. Ideal para coleccionar y disfrutar de la evolución sonora de GTA.",
+          "precio": "39.99",
+          "imagen": "https://i.etsystatic.com/31007565/r/il/0c7110/6033317382/il_340x270.6033317382_6o76.jpg",
+          "categoria": "coleccionables",
+          "id": "31"
+      },
+      {
+          "titulo": "Cuadro triple GTA V",
+          "descripcion": "Un cuadro triple de GTA V es una obra de arte dividida en tres paneles que captura momentos icónicos del mundo de Grand Theft Auto V. Con imágenes vibrantes y detalladas de Los Santos, este cuadro es perfecto para los fanáticos que desean decorar su espacio con la esencia y el estilo único del juego. Ideal para exhibir y añadir un toque dinámico a cualquier habitación.",
+          "precio": "39.99",
+          "imagen": "https://http2.mlstatic.com/D_715903-MLA79449049124_102024-O.jpg",
+          "categoria": "Decoración",
+          "id": "32"
+      },
+      {
+          "titulo": "Cuadro completo GTA V",
+          "descripcion": "Un cuadro completo de GTA V es una pieza de arte que captura la esencia vibrante y dinámica de Los Santos. Con una imagen detallada de los protagonistas y escenarios icónicos del juego, este cuadro es perfecto para los fanáticos de GTA V que quieren añadir un toque de estilo y nostalgia a su espacio. Ideal para exhibir y disfrutar de la atmósfera única del universo de GTA.",
+          "precio": "39.99",
+          "imagen": "https://exitocol.vtexassets.com/arquivos/ids/10830194/cuadro-60x40cms-decorativo-gta-1.jpg?v=637720971112500000",
+          "categoria": "Decoración",
+          "id": "33"
+      },
+      {
+          "titulo": "Cuadro quíntuple GTA V",
+          "descripcion": "Un cuadro quintuple de GTA V es una impresionante obra de arte dividida en cinco paneles, que captura la esencia completa del mundo de Grand Theft Auto V. Con escenas icónicas y detalles vibrantes de Los Santos y sus personajes, este cuadro es perfecto para los fanáticos que desean una decoración única y dinámica, ideal para dar un toque distintivo a cualquier habitación.",
+          "precio": "39.99",
+          "imagen": "https://http2.mlstatic.com/D_NQ_NP_908032-MLA45757332763_042021-O.webp",
+          "categoria": "Decoración",
+          "id": "34"
+      },
+      {
+          "titulo": "Cuadro CHOP GTA V",
+          "descripcion": "Un cuadro de Chop de GTA V captura la esencia del fiel perro de Franklin. Ideal para fanáticos del juego, este cuadro agrega un toque único y personalizado a cualquier espacio.",
+          "precio": "39.99",
+          "imagen": "https://http2.mlstatic.com/D_NQ_NP_750732-MLA43427858659_092020-O.webp",
+          "categoria": "Decoración",
+          "id": "35"
+      },
+      {
+          "titulo": "Cuadro GTA SA",
+          "descripcion": "Un cuadro de CJ de GTA SA captura al icónico protagonista de Grand Theft Auto: San Andreas. Perfecto para los fanáticos del juego, este cuadro aporta un toque nostálgico y único a cualquier habitación.",
+          "precio": "39.99",
+          "imagen": "https://http2.mlstatic.com/D_NQ_NP_969782-MLA40167047436_122019-O.webp",
+          "categoria": "Decoración",
+          "id": "36"
+      },
+      {
+          "titulo": "Stickers Portadas GTA",
+          "descripcion": "Los stickers de la portada de GTA son adhesivos de alta calidad con los diseños icónicos de las portadas de los juegos de la saga. Perfectos para personalizar tus objetos, como laptops, mochilas o cualquier superficie, estos stickers permiten a los fanáticos llevar un pedazo del mundo GTA a donde vayan.",
+          "precio": "39.99",
+          "imagen": "https://i.etsystatic.com/47934500/r/il/17adfc/5536082186/il_fullxfull.5536082186_10em.jpg",
+          "categoria": "Decoración",
+          "id": "37"
+      },
+      {
+          "titulo": "Stickers SAGA GTA",
+          "descripcion": "Los stickers individuales de GTA toda la saga son adhesivos de alta calidad con diseños representativos de cada juego de la franquicia. Perfectos para los fanáticos de Grand Theft Auto, estos stickers permiten personalizar tus pertenencias con momentos y personajes icónicos de toda la saga.",
+          "precio": "39.99",
+          "imagen": "https://i.etsystatic.com/36162656/r/il/d5a14f/4918146528/il_fullxfull.4918146528_pwxy.jpg",
+          "categoria": "Decoración",
+          "id": "38"
+      },
+      {
+          "titulo": "Parches para bordar SAGA GTA",
+          "descripcion": "Los parches para bordar de la saga GTA son piezas de alta calidad que permiten personalizar ropa y accesorios con diseños icónicos de Grand Theft Auto. Perfectos para los fanáticos del juego, estos parches se pueden coser en chaquetas, mochilas o gorras, agregando un toque único y auténtico a tu estilo.",
+          "precio": "39.99",
+          "imagen": "https://i.ebayimg.com/images/g/PWQAAOSwxnFiil6E/s-l1200.jpg",
+          "categoria": "Decoración",
+          "id": "39"
+      },
+      {
+          "titulo": "Cuadro portadas GTA",
+          "descripcion": "Los cuadros de las portadas de toda la saga GTA son una colección de piezas de arte que capturan las portadas icónicas de cada juego de Grand Theft Auto. Perfectos para los fanáticos, estos cuadros ofrecen una forma elegante de rendir homenaje a la saga, añadiendo un toque distintivo a cualquier espacio.",
+          "precio": "39.99",
+          "imagen": "https://m.media-amazon.com/images/I/71AD5jOnoEL.jpg",
+          "categoria": "Decoración",
+          "id": "40"
+      },
+      {
+          "titulo": "Neon para pared GTA VC",
+          "descripcion": "Un cartel de neón de GTA Vice City es una pieza decorativa vibrante que captura la esencia retro y colorida de Grand Theft Auto: Vice City. Con luces brillantes y un diseño inspirado en el estilo de los años 80, este cartel agrega un toque único y llamativo a cualquier habitación, perfecto para los fanáticos del juego.",
+          "precio": "39.99",
+          "imagen": "https://fbi.cults3d.com/uploaders/23065201/illustration-file/ea2e2cb8-e86a-437e-91de-05717921f8db/355201930_637506888017463_1115210954465771343_n.jpg",
+          "categoria": "Decoración",
+          "id": "41"
+      }
+
+
+  ]

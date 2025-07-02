@@ -1,0 +1,114 @@
+.tarjetas{
+    object-fit: cover;
+    background-color: rgb(121, 121, 121);
+    padding: 40px;
+    padding: 40px;
+    height: 480px;
+    justify-content: space-between;
+}
+
+.primera{
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    justify-content: center;
+}
+
+.primera:hover{
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2, green, blue, alpha);
+    filter: brightness(80%);
+}
+
+.card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2, green, blue, alpha);
+    cursor: pointer;
+}
+
+.red{
+    padding: 45px;
+    background-color:antiquewhite
+}
+
+.tarjs{
+    padding: 0px;
+}
+
+body{
+    background-color: rgb(224, 224, 224);
+    height: 100%;
+}
+
+.presentacion{
+    background-color: rgb(238, 238, 238);
+    height: 300px;
+}
+
+.presentacion2{
+    background-color: rgb(238, 238, 238);
+
+}
+
+.tit{
+    color: rgb(58, 58, 58);
+}
+
+.tit2{
+    color: rgb(255, 255, 255);
+}
+
+.reg{
+    height: 100%;
+}
+
+.height{
+    height: 270px;
+}
+
+.carousel-inner img {
+    height: 500px;
+    object-fit: cover;
+  }
+  
+.container-cards-cat{
+    padding: 40px;
+    margin: 20px;
+}
+
+.navbar-toggler {
+    background-color: rgb(168, 168, 168) !important; /* Fondo transparente */
+    border: 2px solid #fff !important; /* Borde blanco */
+}
+
+.navbar-toggler-icon {
+    background-color: rgb(168, 168, 168); /* Cambiar el color del icono de toggle */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 22rem; /* Garantiza que todas las tarjetas tengan la misma altura */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el contenido */
+    flex-grow: 1;
+}
+
+.card-text {
+    max-height: 18rem; /* Limita la altura de la descripción */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: wrap; /* Alternativamente, puedes usar wrap para varias líneas */
+}
+
+.add-to-cart-btn {
+    margin-top: auto; /* Empuja el botón al final del espacio disponible */
+}
