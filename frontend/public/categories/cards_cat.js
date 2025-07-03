@@ -1,4 +1,4 @@
-fetch('../../products/products.json').then(response => response.json()).then(data => {
+fetch('/products/products.json').then(response => response.json()).then(data => {
 
     const container = document.getElementById('card-container');
     const categoriaPagina = document.title.toLowerCase();

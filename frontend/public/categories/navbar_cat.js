@@ -11,7 +11,7 @@ const navBar = `
         <div class="container-fluid">
         
             <a href="../index.html" class="navbar-brand text-light">
-            <img src="../../assets/icono.png" alt="Log In Icon" style="width: 50px; height: 50px; margin-right: 8px;">
+            <img src="../assets/icono.png" alt="Log In Icon" style="width: 50px; height: 50px; margin-right: 8px;">
             GTA Market</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
@@ -65,7 +65,7 @@ const modal = `
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <img src="../../assets/icono.png" alt="Log In Icon" style="width: 50px; height: 50px; margin-right: 8px;">
+                <img src="../assets/icono.png" alt="Log In Icon" style="width: 50px; height: 50px; margin-right: 8px;">
                     <h5 class="modal-title">- Iniciar Sesión</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

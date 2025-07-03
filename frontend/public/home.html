@@ -52,6 +52,19 @@
             <div class="col col-2"></div>  
         </div>
 
+        <div id="carritoIcono">
+          🛒 Carrito (<span id="contadorCarrito">0</span>)
+        </div>
+
+        <button id="btnComprar">Finalizar compra</button>
+        <div id="mensajeCompra"></div>
+
+        <h2>Filtrar por categoría:</h2>
+        <select id="filtroCategoria">
+          <option value="todas">Todas</option>
+        </select>
+        <div id="contenedorProductos"></div>
+
 
         <!-- Cuerpo -->
         <div class="container mt-5">
@@ -150,6 +163,59 @@
     
     </div>
 
+    <script>
+      let productos = [];
+
+      fetch('../products/products.json')
+        .then(res => res.json())
+        .then(data => {
+          productos = data;
+          cargarCategorias(productos);
+          mostrarProductos(productos);
+        });
+
+      function cargarCategorias(lista) {
+        const categorias = [...new Set(lista.map(p => p.categoria))];
+        const select = document.getElementById('filtroCategoria');
+        categorias.forEach(cat => {
+          const option = document.createElement('option');
+          option.value = cat;
+          option.textContent = cat;
+          select.appendChild(option);
+        });
+
+        select.addEventListener('change', () => {
+          const cat = select.value;
+          const filtrados = (cat === 'todas') ? productos : productos.filter(p => p.categoria === cat);
+          mostrarProductos(filtrados);
+        });
+      }
+
+      function mostrarProductos(lista) {
+        const contenedor = document.getElementById('contenedorProductos');
+        contenedor.innerHTML = '';
+        lista.forEach(prod => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <h3>${prod.nombre}</h3>
+            <p>${prod.descripcion}</p>
+            <p>Precio: $${prod.precio}</p>
+            <button class="botonAgregar">Agregar al carrito</button>
+          `;
+          card.querySelector('.botonAgregar').addEventListener('click', () => agregarAlCarrito(prod));
+          contenedor.appendChild(card);
+        });
+      }
+
+      //revisar//
+      function agregarAlCarrito(producto) {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        carrito.push(producto);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+      }
+    </script>
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -158,5 +224,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="./cards_home.js" defer></script>
     <script src="./navbar_home.js" defer></script>
+    <script src="./index.js" defer></script>
 </body>
 </html>
