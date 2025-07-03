@@ -5,6 +5,8 @@ const navElements = [
     { title: 'Decoración', link: '../categories/catDecoracion.html' }
 ];
 
+
+// Esta función se encarga de actualizar el carrito al cargar la página
 function agregarAlCarrito(producto) {
     let carrito = JSON.parse(localStorage.getItem('carrito')) || []; 
     const existingProductIndex = carrito.findIndex(item => item.id === producto.id);
@@ -18,17 +20,16 @@ function agregarAlCarrito(producto) {
     actualizarContadorCarrito(); 
 }
 
+// Esta función actualiza el contador del carrito en la parte superior de la página
 function actualizarContadorCarrito() {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0); 
-    
-    // ¡ESTE ES EL PUNTO CLAVE! Usar getElementById y el ID del span
+
     const contadorElement = document.getElementById('contadorCarrito'); 
     
     if (contadorElement) {
         contadorElement.textContent = totalItems;
     } else {
-        // Esto te ayudará a depurar si el elemento no se encuentra
         console.warn("Elemento con ID 'contadorCarrito' no encontrado.");
     }
 }

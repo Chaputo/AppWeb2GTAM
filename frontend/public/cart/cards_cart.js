@@ -44,21 +44,22 @@ function renderizarCarrito() {
     }
 }
 
+// Recuperar el carrito del localStorage y calcular el total
 function calcularTotal() {
-    // Recuperar el carrito del localStorage
+
     const cart = JSON.parse(localStorage.getItem('carrito')) || [];
   
-    // Calcular el total sumando precio * cantidad para cada producto
     let total = 0;
     cart.forEach(producto => {
       total += producto.precio * producto.cantidad;
     });
   
-    // Mostrar el total en el elemento con id 'cartTotal'
     const cartTotal = document.getElementById('cartTotal');
-    cartTotal.textContent = total.toFixed(2); // Mostrar con 2 decimales
+    cartTotal.textContent = total.toFixed(2);
 }
 
+
+// Cambiar la cantidad de un producto en el carrito
 function cambiarCantidad(index, cambio) {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     if (carrito[index]) {
@@ -67,37 +68,35 @@ function cambiarCantidad(index, cambio) {
         if (nuevaCantidad >= 0 && nuevaCantidad <= 5) {
             carrito[index].cantidad = nuevaCantidad;
 
-            // Si la cantidad llega a 0, eliminar el producto
             if (nuevaCantidad === 0) {
                 carrito.splice(index, 1);
             }
 
             localStorage.setItem('carrito', JSON.stringify(carrito));
             calcularTotal();
-            renderizarCarrito(); // Volver a renderizar el carrito
+            renderizarCarrito();
         }
     }
 }
 
+// Eliminar un producto del carrito
 function eliminarProducto(index) {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    carrito.splice(index, 1); // Elimina el producto del carrito
+    carrito.splice(index, 1);
     localStorage.setItem('carrito', JSON.stringify(carrito));
     calcularTotal();
-    renderizarCarrito(); // Volver a renderizar el carrito
+    renderizarCarrito();
 }
 
+// Actualizar el contador del carrito en la parte superior de la página
 function actualizarContadorCarrito() {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0); 
-    
-    // ¡ESTE ES EL PUNTO CLAVE! Usar getElementById y el ID del span
+    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
     const contadorElement = document.getElementById('contadorCarrito'); 
     
     if (contadorElement) {
         contadorElement.textContent = totalItems;
     } else {
-        // Esto te ayudará a depurar si el elemento no se encuentra
         console.warn("Elemento con ID 'contadorCarrito' no encontrado.");
     }
 }

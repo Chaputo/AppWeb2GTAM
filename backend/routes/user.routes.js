@@ -8,7 +8,6 @@ const fileUsers = await readFile('/GTAM/frontend/users/users.json', 'utf-8');
 const userData = JSON.parse(fileUsers);
 
 // Ruta para buscar al usuario
-
 router.post('/search', (req, res) => {
     const userEmail = req.body.email;
     const userPass = req.body.contraseña;

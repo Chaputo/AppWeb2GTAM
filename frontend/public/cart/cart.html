@@ -48,9 +48,6 @@
     </footer>
 
     <script>
-        // Asegúrate de que 'cart' se inicialice con el nombre correcto de la clave en localStorage
-        // Si tu clave en localStorage es 'carrito' (minúscula) como en tus otros JS, úsala aquí.
-        // Si es 'cart' (como en este script), asegúrate de que sea consistente en todos lados.
         const cart = JSON.parse(localStorage.getItem('carrito')) || []; 
 
         function updateCart() {
@@ -61,10 +58,8 @@
             let total = 0;
 
             cart.forEach((product, index) => {
-                // Asegúrate de que 'cantidad' sea la propiedad usada, no 'quantity'
-                // Revisa esto en tu localStorage y en los scripts que añaden al carrito
-                const productQuantity = product.cantidad || 0; // Usar 'cantidad' o 'quantity' de forma consistente
-                const productTotal = product.precio * productQuantity; // Usar 'precio' no 'price'
+                const productQuantity = product.cantidad || 0;
+                const productTotal = product.precio * productQuantity;
                 total += productTotal;
 
                 const row = document.createElement('div');
@@ -89,17 +84,13 @@
         }
 
         function updateQuantity(index, change) {
-            // Asegúrate de usar 'cantidad' aquí también
             if (cart[index] && (cart[index].cantidad || 0) + change >= 0) {
                 cart[index].cantidad = (cart[index].cantidad || 0) + change;
-                // Si la cantidad llega a 0, eliminar el producto
                 if (cart[index].cantidad === 0) {
                     cart.splice(index, 1);
                 }
-                localStorage.setItem('carrito', JSON.stringify(cart)); // Asegura la clave 'carrito'
+                localStorage.setItem('carrito', JSON.stringify(cart));
                 updateCart();
-                // Si actualizarContadorCarrito está en otro archivo, asegúrate de que se pueda llamar aquí.
-                // Si no, puedes simplemente volver a calcular el total o actualizar el contador dentro de updateCart.
                 if (typeof actualizarContadorCarrito === 'function') {
                     actualizarContadorCarrito(); 
                 }
@@ -108,22 +99,20 @@
 
         function removeFromCart(index) {
             cart.splice(index, 1);
-            localStorage.setItem('carrito', JSON.stringify(cart)); // Asegura la clave 'carrito'
+            localStorage.setItem('carrito', JSON.stringify(cart));
             updateCart();
-            // Si actualizarContadorCarrito está en otro archivo, asegúrate de que se pueda llamar aquí.
             if (typeof actualizarContadorCarrito === 'function') {
                 actualizarContadorCarrito();
             }
         }
 
-        // Aquí integramos la función para el botón Comprar
         document.addEventListener('DOMContentLoaded', () => {
-            updateCart(); // Llama a la actualización del carrito al cargar la página
+            updateCart();
 
             const btnComprar = document.getElementById('btnComprar');
             if (btnComprar) {
                 btnComprar.addEventListener('click', () => {
-                    const carritoActual = JSON.parse(localStorage.getItem('carrito')) || []; // Usa 'carrito'
+                    const carritoActual = JSON.parse(localStorage.getItem('carrito')) || [];
                     if (carritoActual.length === 0) {
                         alert('Tu carrito está vacío');
                         return;
@@ -137,7 +126,7 @@
                         })
                     })
                     .then(res => {
-                        if (!res.ok) { // Manejar respuestas HTTP no exitosas
+                        if (!res.ok) {
                             return res.json().then(errData => {
                                 throw new Error(errData.message || 'Error en la compra');
                             });
@@ -151,11 +140,11 @@
                             mensajeElement.classList.remove('text-danger');
                             mensajeElement.classList.add('text-success');
                         }
-                        localStorage.removeItem('carrito'); // Usa 'carrito'
+                        localStorage.removeItem('carrito');
                         if (typeof actualizarContadorCarrito === 'function') {
                             actualizarContadorCarrito(); 
                         }
-                        updateCart(); // Vuelve a renderizar el carrito vacío
+                        updateCart();
                     })
                     .catch(err => {
                         console.error('Error en la compra:', err);

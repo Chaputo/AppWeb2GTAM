@@ -60,44 +60,36 @@ fetch('../products/products.json').then(response => response.json()).then(data =
 
   
 function updateQuantity(titulo, change) {
-    // Buscar el input correspondiente a este producto
     const input = document.querySelector(`input[data-titulo='${titulo}']`);
     
     if (input) {
-        // Obtener el valor actual del input
         let currentValue = parseInt(input.value);
-        // Si el cambio no provoca que el valor esté fuera del rango permitido, actualizarlo
-        currentValue = Math.max(0, Math.min(5, currentValue + change)); // Limitar entre 0 y 5
-        input.value = currentValue; // Establecer el nuevo valor
+        currentValue = Math.max(0, Math.min(5, currentValue + change));
+        input.value = currentValue;
     }
 }
 
 
 function agregarAlCarrito(producto, cantidad) {
-    // Recuperar el carrito desde localStorage
+
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-    // Buscar si el producto ya está en el carrito
     const index = carrito.findIndex(item => item.titulo === producto.titulo);
     if (index !== -1) {
-        // Si ya está en el carrito, incrementar la cantidad
         carrito[index].cantidad += parseInt(cantidad, 10) || 1;
     } else {
-        // Si no está, agregarlo al carrito
-        producto.cantidad = parseInt(cantidad, 10) || 1; // Asegurarse de que la cantidad sea un número
+        producto.cantidad = parseInt(cantidad, 10) || 1;
         carrito.push(producto);
     }
     localStorage.setItem('carrito', JSON.stringify(carrito));
 
-    // Actualizar el contador del carrito en la interfaz
     actualizarContadorCarrito();
 }
 
 function actualizarContadorCarrito() {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const contadorCarrito = document.querySelector('.bi-cart-plus'); // Suponiendo que este es el ícono del carrito
+    const contadorCarrito = document.querySelector('.bi-cart-plus');
 
-    // Asegurarse de que el contador se actualice con el número total de productos en el carrito
     if (contadorCarrito) {
         contadorCarrito.textContent = carrito.reduce((total, item) => total + item.cantidad, 0);
     }

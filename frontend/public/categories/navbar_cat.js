@@ -102,7 +102,7 @@ window.addEventListener('load', () =>{
     const logOutButton = document.getElementById('logOutBtn');
     if (logOutButton) {
         logOutButton.addEventListener('click', function() {
-            sessionStorage.clear();  // Limpiar sessionStorage
+            sessionStorage.clear();
         });
     }
 })
