@@ -1,3 +1,4 @@
+// Agregar productos al carrito
 function agregarAlCarrito(producto) {
   let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
   carrito.push(producto);
@@ -5,13 +6,15 @@ function agregarAlCarrito(producto) {
   actualizarContadorCarrito();
 }
 
+// Mostrar el contador del carrito
 function actualizarContadorCarrito() {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
   document.getElementById('contadorCarrito').textContent = carrito.length;
 }
-
 actualizarContadorCarrito();
 
+
+// Mostrar los productos en la página
 function mostrarProductos(lista) {
   const contenedor = document.getElementById('contenedorProductos');
   contenedor.innerHTML = '';
@@ -30,15 +33,13 @@ function mostrarProductos(lista) {
 }
 
 
-//Orden al backend
+//Orden de compra al backend
 document.getElementById('btnComprar').addEventListener('click', () => {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
   if (carrito.length === 0) {
     alert('Tu carrito está vacío');
     return;
   }
-
   fetch('/orden', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
