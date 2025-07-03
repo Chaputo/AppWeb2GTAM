@@ -49,7 +49,7 @@ async function loadDatas() {
         // Asegúrate de que estas rutas sean CORRECTAS en relación con donde se ejecuta index.js
         // Si index.js está en la raíz, y las carpetas 'users', 'products', 'sales' están dentro de 'frontend'
         userData = JSON.parse(await readFile(path.join(__dirname, 'frontend', 'users', 'users.json'), 'utf-8'));
-        productData = JSON.parse(await readFile(path.join(__dirname, 'frontend', 'products', 'products.json'), 'utf-8'));
+        productData = JSON.parse(await readFile(path.join(__dirname, 'frontend', 'public', 'products', 'products.json'), 'utf-8'));
         salesData = JSON.parse(await readFile(path.join(__dirname, 'frontend', 'sales', 'sales.json'), 'utf-8'));
         console.log('Datos cargados correctamente');
     } catch (err) {

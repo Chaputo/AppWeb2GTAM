@@ -1,9 +1,17 @@
+actualizarContadorCarrito();
+
 // Agregar productos al carrito
 function agregarAlCarrito(producto) {
-  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-  carrito.push(producto);
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  actualizarContadorCarrito();
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || []; 
+    const existingProductIndex = carrito.findIndex(item => item.id === producto.id);
+    if (existingProductIndex > -1) {
+        carrito[existingProductIndex].cantidad += 1;
+    } else {
+        producto.cantidad = 1; 
+        carrito.push(producto);
+    }
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarContadorCarrito(); 
 }
 
 // Mostrar el contador del carrito

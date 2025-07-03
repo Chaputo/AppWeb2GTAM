@@ -6,24 +6,30 @@ const navElements = [
 ];
 
 function agregarAlCarrito(producto) {
-    let carrito = JSON.parse(localStorage.getItem('cart')) || []; 
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || []; 
     const existingProductIndex = carrito.findIndex(item => item.id === producto.id);
     if (existingProductIndex > -1) {
-        carrito[existingProductIndex].quantity += 1;
+        carrito[existingProductIndex].cantidad += 1;
     } else {
-        producto.quantity = 1; 
+        producto.cantidad = 1; 
         carrito.push(producto);
     }
-    localStorage.setItem('cart', JSON.stringify(carrito));
+    localStorage.setItem('carrito', JSON.stringify(carrito));
     actualizarContadorCarrito(); 
 }
 
 function actualizarContadorCarrito() {
-    const carrito = JSON.parse(localStorage.getItem('cart')) || [];
-    const totalItems = carrito.reduce((sum, item) => sum + item.quantity, 0);
-    const contadorElement = document.getElementById('contadorCarrito');
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0); 
+    
+    // ¡ESTE ES EL PUNTO CLAVE! Usar getElementById y el ID del span
+    const contadorElement = document.getElementById('contadorCarrito'); 
+    
     if (contadorElement) {
         contadorElement.textContent = totalItems;
+    } else {
+        // Esto te ayudará a depurar si el elemento no se encuentra
+        console.warn("Elemento con ID 'contadorCarrito' no encontrado.");
     }
 }
 

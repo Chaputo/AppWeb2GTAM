@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     renderizarCarrito();
     calcularTotal();
+    actualizarContadorCarrito();
 });
 
 function renderizarCarrito() {
@@ -88,6 +89,15 @@ function eliminarProducto(index) {
 
 function actualizarContadorCarrito() {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const contadorCarrito = document.querySelector('.bi-cart-plus');
-    contadorCarrito.textContent = carrito.reduce((total, item) => total + item.cantidad, 0);
+    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0); 
+    
+    // ¡ESTE ES EL PUNTO CLAVE! Usar getElementById y el ID del span
+    const contadorElement = document.getElementById('contadorCarrito'); 
+    
+    if (contadorElement) {
+        contadorElement.textContent = totalItems;
+    } else {
+        // Esto te ayudará a depurar si el elemento no se encuentra
+        console.warn("Elemento con ID 'contadorCarrito' no encontrado.");
+    }
 }
