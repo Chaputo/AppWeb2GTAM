@@ -30,5 +30,8 @@
     "url": "https://github.com/Chaputo/AppWeb2GTAM/issues"
   },
   "homepage": "https://github.com/Chaputo/AppWeb2GTAM#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.0.10"
+  }
 }
