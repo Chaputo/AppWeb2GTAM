@@ -1,24 +1,25 @@
-import mongoose from "mongoose";
+import { MongoClient } from "mongodb";
 
-// Conexión a la base de datos MongoDB
-mongoose.connect('mongodb://localhost:27017/appweb', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('Conectado a MongoDB'))
-.catch(err => console.error('Error de conexión', err));
+const uri = "mongodb+srv://LucasAcosta:123MDBLucas@gtam.37wlekf.mongodb.net/?retryWrites=true&w=majority&appName=GTAM";
+const client = new MongoClient(uri);
 
+// Conectar a la base de datos
+async function connectToDatabase() {
+  try {
+    await client.connect();
+    console.log('Conectado a MongoDB Atlas con MongoClient');
+    return client.db();
+  } catch (error) {
+    console.error('Error de conexión a MongoDB Atlas:', error);
+    throw error;
+  }
+}
 
-// Definición del esquema para el modelo de usuario
-const usuarioSchema = new mongoose.Schema({
-  username: String,
-  password: String,
-  email: String
-});
-module.exports = mongoose.model('Usuario', usuarioSchema);
+// Cerrar la conexión
+async function closeDatabaseConnection() {
+  await client.close();
+  console.log('Conexión a MongoDB Atlas cerrada.');
+}
 
-
-// Ejemplo de uso para crear un nuevo usuario
-const Usuario = require('./models/Usuario');
-const nuevoUsuario = new Usuario({ username, password: hashedPassword });
-await nuevoUsuario.save();
+// Exportar el cliente y las funciones de conexión
+export { connectToDatabase, closeDatabaseConnection, client };

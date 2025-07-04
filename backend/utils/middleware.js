@@ -27,11 +27,17 @@ export const decodeToken = async (token) => {
 };
 
 export const verificarTokenMiddleware = async (req, res, next) => {
-    const token = req.headers['authorization'];
+    const authHeader = req.headers['authorization'];
 
-    if (!token) {
+    if (!authHeader) {
         return res.status(403).json({ status: false, message: 'Token requerido' });
     }
+
+    const tokenParts = authHeader.split(' ');
+    if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
+        return res.status(401).json({ status: false, message: 'Formato de token inválido. Use: Bearer <token>' });
+    }
+    const token = tokenParts[1];
 
     try {
         const decoded = await jwt.verify(token, SECRET);
