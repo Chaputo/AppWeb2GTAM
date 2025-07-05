@@ -6,50 +6,59 @@ const navElements = [
 ];
 
 const navBar = `
-    <nav class="navbar navbar-expand-lg bg-dark text-light">
-        <div class="container-fluid">
-        
-            <a href="index.html" class="navbar-brand text-light">
-            <img src="../assets/icono.png" alt="Log In Icon" style="width: 50px; height: 50px; margin-right: 8px;">
-            GTA Market</a>
+    <nav class="bg-gray-900 text-white p-4">
+  <div class="container mx-auto flex flex-wrap items-center justify-between">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon text-light"></span>
-            </button>
+    <a href="index.html" class="flex items-center text-white text-lg font-bold">
+      <img src="../assets/icono.png" alt="Log In Icon" class="w-12 h-12 mr-2">
+      GTA Market
+    </a>
 
-            
-            <div class="collapse navbar-collapse text-light" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                ${
-                    navElements.map(e => {
-                        return `
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href=${e.link}>${e.title}</a>
-                        </li>
-                        `
-                    }).join('')
-                }
-                </ul>
-                <div class="ms-auto d-flex align-items-center">  
-                    <a href="cart/cart.html" class="btn btn-outline-light ms-auto me-2">
-                        <i class="bi bi-cart-plus"></i>
-                    </a>
-                    <a href="register/register.html" class="btn btn-outline-light ms-auto me-2">
-                        <i class="bi bi-bookmark-plus"></i> Registrarse
-                    </a>
-                    <button class="btn btn-outline-light ms-auto me-2" data-bs-toggle="modal" data-bs-target="#modal-login">
-                    <i class="bi bi-box-arrow-in-right"></i> Ingresar
-                    </button>
-                    <button id="logOutBtn" class="btn btn-outline-danger ms-auto">
-                    <i class="bi bi-box-arrow-left"></i>
-                    </button>
-                </div>
-                
-            </div>
+    <button
+      class="lg:hidden text-white focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-md p-2"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
 
-        </div>
-    </nav>
+    <div class="hidden lg:flex flex-grow items-center" id="navbarSupportedContent">
+      <ul class="flex flex-col lg:flex-row lg:space-x-4 mt-4 lg:mt-0">
+        ${
+          navElements.map(e => {
+            return `
+            <li>
+              <a class="block py-2 px-3 text-white hover:text-gray-300" href=${e.link}>${e.title}</a>
+            </li>
+            `
+          }).join('')
+        }
+      </ul>
+
+      <div class="flex flex-col lg:flex-row lg:ml-auto items-center mt-4 lg:mt-0 space-y-2 lg:space-y-0 lg:space-x-2">
+        <a href="cart/cart.html" class="inline-flex items-center justify-center p-2 rounded-md border border-white text-white hover:bg-gray-700 transition duration-200">
+          <i class="bi bi-cart-plus mr-1"></i>
+          <span class="sr-only">Carrito</span> </a>
+        <a href="register/register.html" class="inline-flex items-center justify-center p-2 rounded-md border border-white text-white hover:bg-gray-700 transition duration-200">
+          <i class="bi bi-bookmark-plus mr-1"></i> Registrarse
+        </a>
+        <button class="inline-flex items-center justify-center p-2 rounded-md border border-white text-white hover:bg-gray-700 transition duration-200" data-bs-toggle="modal" data-bs-target="#modal-login">
+          <i class="bi bi-box-arrow-in-right mr-1"></i> Ingresar
+        </button>
+        <button id="logOutBtn" class="inline-flex items-center justify-center p-2 rounded-md border border-red-500 text-red-500 hover:bg-red-700 hover:text-white transition duration-200">
+          <i class="bi bi-box-arrow-left mr-1"></i>
+          <span class="sr-only">Cerrar sesión</span> </button>
+      </div>
+    </div>
+
+  </div>
+</nav>
 `
 
 let navContainer = document.querySelector('header')

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["frontend/react-app/src/components/*"]
+    },
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
+    "noEmit": true, // <-- AGREGA ESTA LÍNEA
+    // ... otras opciones que puedas tener
+  },
+  // ... otras secciones de tsconfig.json (ej. "include")
+}
