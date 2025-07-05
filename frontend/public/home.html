@@ -1,223 +1,103 @@
 <!DOCTYPE html>
-<html lang="es" data-bs-theme="light">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="icon" href="/assets/icono.png" type="image/x-icon">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styles/styles.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="icon" href="/assets/icono.png" type="image/x-icon">
     <title>GTA Market</title>
 </head>
-<body data-bs-theme="light">
+<body class="bg-gray-100 font-sans leading-normal tracking-normal"> <header></header>
+    <div id="modalContainer"></div>
 
-  <header></header>
-  <div id="modalContainer"></div>
+    <input type="hidden" id="pageName" value="GTA Market">
 
-  <input type="hidden" id="pageName" value="GTA Market">
+    <div class="container mx-auto mt-8 px-4"> <h1 id="title" class="text-3xl font-bold mb-6 text-gray-800"></h1> </div>
 
-    <div class="container mt-5">
-      <h1 id="title"></h1>
+    <div class="flex flex-nowrap overflow-x-auto w-full p-5 space-x-4 mb-8" 
+         style="background-image: url(https://preview.redd.it/nduksi52zrs41.jpg?auto=webp&s=0760039b9b3ebdb699ef6569ee313b787f27375c); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <div class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105">
+            <img src="https://images.cdn2.buscalibre.com/fit-in/360x360/98/76/9876c294501df52e7732902dc5b376a4.jpg" class="w-full h-full object-cover" alt="GTA V">
+        </div>
+        <div class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105">
+            <img src="https://s0.smartresize.com/wallpaper/717/232/HD-wallpaper-gta-iv-grand-theft-auto-iv-niko-bellic-artwork-games-thumbnail.jpg" class="w-full h-full object-cover" alt="GTA IV">
+        </div>
+        <div class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105">
+            <img src="https://i.pinimg.com/originals/af/4f/dc/af4fdc071ddbb3e96cdbad58e8f16778.jpg" class="w-full h-full object-cover" alt="GTA San Andreas">
+        </div>
+        <div class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105">
+            <img src="https://cdn1.epicgames.com/offer/fd6a13a256014a22a83ff2aaacc30e00/EGS_GrandTheftAutoViceCityTheDefinitiveEdition_RockstarGames_S2_1200x1600-18ac3dd32143492b2650144da0cf0ca9" class="w-full h-full object-cover" alt="GTA Vice City">
+        </div>
+        </div>
 
+    <div class="mb-6 px-4 max-w-lg mx-auto"> <label for="filtroCategoria" class="block text-lg font-semibold text-gray-800 mb-2">
+            Filtrar por categoría:
+        </label>
+        <select id="filtroCategoria" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+            <option value="todas">Todas</option>
+            </select>
     </div>
 
+  
 
-    <div class="row text-center">
-        <div class="col col-12">
-            
-          
-          
-          
-        </div>
-        <div class="row flex-nowrap overflow-auto col col-12 tarjetas" style="background-image: url(https://preview.redd.it/nduksi52zrs41.jpg?auto=webp&s=0760039b9b3ebdb699ef6569ee313b787f27375c); background-size: cover; background-position: center; background-repeat: no-repeat; padding: 20px;">
-            <div class="col col-2"></div>
-            
-            <div class="card primera p-0" style="width: 15rem;">
-                <img src="https://images.cdn2.buscalibre.com/fit-in/360x360/98/76/9876c294501df52e7732902dc5b376a4.jpg" class="card-img-top h-100" alt="...">
-                
-            </div>
-            <div class="card primera p-0" style="width: 15rem;">
-                <img src="https://s0.smartresize.com/wallpaper/717/232/HD-wallpaper-gta-iv-grand-theft-auto-iv-niko-bellic-artwork-games-thumbnail.jpg" class="card-img-top h-100" alt="...">
-                
-            </div>
-            <div class="card primera p-0" style="width: 15rem;">
-                <img src="https://i.pinimg.com/originals/af/4f/dc/af4fdc071ddbb3e96cdbad58e8f16778.jpg" class="card-img-top h-100" alt="...">
-                
-            </div>
-            <div class="card primera p-0" style="width: 15rem;">
-                <img src="https://cdn1.epicgames.com/offer/fd6a13a256014a22a83ff2aaacc30e00/EGS_GrandTheftAutoViceCityTheDefinitiveEdition_RockstarGames_S2_1200x1600-18ac3dd32143492b2650144da0cf0ca9" class="card-img-top h-100" alt="...">
-                
-            </div>
-            <div class="col col-2"></div>  
-        </div>
-
-        <div id="contenedorProductos" class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4"></div>
-
-
-        <button id="btnComprar">Finalizar compra</button>
-        <div id="mensajeCompra"></div>
-
-        <h2>Filtrar por categoría:</h2>
-        <select id="filtroCategoria">
-          <option value="todas">Todas</option>
-        </select>
-        <div id="contenedorProductos"></div>
-
-
-        <!-- Cuerpo -->
-        <div class="container mt-5">
-          <div class="row">
-              <!-- Columna izquierda -->
-              <div class="col-3 bg-light text-secondary">
-                <div class="container-fluid">
-                  <div class="row container-fluid">
-                    <div class="container-fluid">
-                      <div class="card">
-                        <div class="card-header">Notificaciones</div>
-            
-                        <div class="card-body">
-                          <ul class="list-group list-group-item-success rounded-4">
-                            <li class="list-group-item">
-                              <p class="text-body-secondary">LLEGO TU COMPRA</p>
-                              08/11
-                            </li>
-                            <li class="list-group-item">
-                              <p class="text-body-secondary">TU COMPRA ESTÁ EN CAMINO</p>
-                              07/11
-                            </li>
-                            <li class="list-group-item">
-                              <p class="text-body-secondary">TU PEDIDO ESTÁ LISTO</p>
-                              30/10
-                            </li>
-                          </ul>
+    <button id="btnComprar" class="hidden"></button> <div id="mensajeCompra" class="hidden"></div> <div class="container mx-auto mt-8 px-4">
+        <div class="flex flex-wrap -mx-4"> <div class="w-full lg:w-1/4 px-4 bg-gray-50 text-gray-700 p-4 rounded-lg shadow-md">
+                <div class="space-y-6">
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <div class="p-4 border-b border-gray-200 font-semibold text-lg">Notificaciones</div>
+                        <div class="p-4">
+                            <ul class="space-y-3">
+                                <li class="p-3 bg-green-100 border border-green-200 rounded-md">
+                                    <p class="text-sm text-gray-500">LLEGÓ TU COMPRA</p>
+                                    <p class="font-medium">08/11</p>
+                                </li>
+                                <li class="p-3 bg-green-100 border border-green-200 rounded-md">
+                                    <p class="text-sm text-gray-500">TU COMPRA ESTÁ EN CAMINO</p>
+                                    <p class="font-medium">07/11</p>
+                                </li>
+                                <li class="p-3 bg-green-100 border border-green-200 rounded-md">
+                                    <p class="text-sm text-gray-500">TU PEDIDO ESTÁ LISTO</p>
+                                    <p class="font-medium">30/10</p>
+                                </li>
+                            </ul>
                         </div>
-            
-                      </div>
                     </div>
-                  </div>
-                    
-                </div>
-                <div class="container-fluid">
-                  <div class="row mt-5 container-fluid">
-                    <div class="container-fluid">
-                      <div class="card">
-                        <div class="card-header">Notificaciones</div>
-            
-                        <div class="card-body">
-                          <ul class="list-group list-group-item-success rounded-4">
-                            <li class="list-group-item">
-                              <p class="text-body-secondary">LLEGO TU COMPRA</p>
-                              Llego tu compra
-                            </li>
-                            <li class="list-group-item">
-                              <p class="text-body-secondary">LLEGO TU COMPRA</p>
-                              Llego tu compra
-                            </li>
-                            <li class="list-group-item">
-                              <p class="text-body-secondary">LLEGO TU COMPRA</p>
-                              Llego tu compra
-                            </li>
-                          </ul>
-                        </div>
-            
-                      </div>
-                    </div>
-                  </div>
-                    
-                </div>
-
-
-                
-
-                
-
-              </div>
-              <!-- Fin Columna izquierda -->
-      
-              <!-- Columna derecha -->
-              <div class="col-9">
-                <div class="row g-3" id="dynamicCards">
-                  
-                    <div class="col-12">
-                        <div class="row g-5" id="card-container">
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <div class="p-4 border-b border-gray-200 font-semibold text-lg">Notificaciones</div>
+                        <div class="p-4">
+                            <ul class="space-y-3">
+                                <li class="p-3 bg-green-100 border border-green-200 rounded-md">
+                                    <p class="text-sm text-gray-500">LLEGÓ TU COMPRA</p>
+                                    <p class="font-medium">Llego tu compra</p>
+                                </li>
+                                <li class="p-3 bg-green-100 border border-green-200 rounded-md">
+                                    <p class="text-sm text-gray-500">LLEGÓ TU COMPRA</p>
+                                    <p class="font-medium">Llego tu compra</p>
+                                </li>
+                                <li class="p-3 bg-green-100 border border-green-200 rounded-md">
+                                    <p class="text-sm text-gray-500">LLEGÓ TU COMPRA</p>
+                                    <p class="font-medium">Llego tu compra</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-              <!-- Fin Columna derecha -->
-          </div>
-      </div>
-      <!-- Fin Cuerpo -->
-
-         
-                
-
-
-      <footer class="bg-dark text-light mt-5 p-4 text-center">
-        <p>&copy; 2024 GTA Market. Todos los derechos reservados.</p>
-      </footer>    
-
+            <div class="w-full lg:w-3/4 px-4">
+                <div id="contenedorProductos" class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4"></div>
+            </div>
     </div>
     
-    </div>
-
-    <script>
-      let productos = [];
-
-      
-
-      function cargarCategorias(lista) {
-        const categorias = [...new Set(lista.map(p => p.categoria))];
-        const select = document.getElementById('filtroCategoria');
-        categorias.forEach(cat => {
-          const option = document.createElement('option');
-          option.value = cat;
-          option.textContent = cat;
-          select.appendChild(option);
-        });
-
-        select.addEventListener('change', () => {
-          const cat = select.value;
-          const filtrados = (cat === 'todas') ? productos : productos.filter(p => p.categoria === cat);
-          mostrarProductos(filtrados);
-        });
-      }
-
-      function mostrarProductos(lista) {
-        const contenedor = document.getElementById('contenedorProductos');
-        contenedor.innerHTML = '';
-        lista.forEach(prod => {
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.innerHTML = `
-            <h3>${prod.nombre}</h3>
-            <p>${prod.descripcion}</p>
-            <p>Precio: $${prod.precio}</p>
-            <button class="botonAgregar">Agregar al carrito</button>
-          `;
-          card.querySelector('.botonAgregar').addEventListener('click', () => agregarAlCarrito(prod));
-          contenedor.appendChild(card);
-        });
-      }
-
-      //revisar//
-      function agregarAlCarrito(producto) {
-        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        carrito.push(producto);
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-      }
-    </script>
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <script src="./cards_home.js" defer></script>
+    <footer class="bg-gray-900 text-white mt-8 p-6 text-center shadow-inner">
+        <p>&copy; 2024 GTA Market. Todos los derechos reservados.</p>
+    </footer>    
+    
     <script src="./navbar_home.js" defer></script>
-    <script src="./index.js" defer></script>
+    <script src="./index.js" defer></script> 
 </body>
 </html>

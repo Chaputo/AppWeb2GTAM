@@ -1,31 +1,29 @@
 .tarjetas{
-    object-fit: cover;
     background-color: rgb(121, 121, 121);
-    padding: 40px;
-    padding: 40px;
-    height: 480px;
-    justify-content: space-between;
+    padding: 40px; /* Ya no hay padding duplicado */
+    /* Eliminado height: 480px; */
+    justify-content: space-between; /* Asegúrate que este div se use con display: flex o grid si quieres que esto funcione */
 }
 
 .primera{
-    object-fit: cover;
+    /* Eliminado object-fit: cover; */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    justify-content: center;
+    justify-content: center; /* Asegúrate que este div se use con display: flex o grid si quieres que esto funcione */
 }
 
 .primera:hover{
     transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2, green, blue, alpha);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* Corregido formato rgba */
     filter: brightness(80%);
 }
 
 .card:hover{
     transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2, green, blue, alpha);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* Corregido formato rgba */
     cursor: pointer;
 }
 
@@ -72,8 +70,8 @@ body{
 .carousel-inner img {
     height: 500px;
     object-fit: cover;
-  }
-  
+}
+
 .container-cards-cat{
     padding: 40px;
     margin: 20px;
@@ -88,11 +86,20 @@ body{
     background-color: rgb(168, 168, 168); /* Cambiar el color del icono de toggle */
 }
 
+/* Las siguientes reglas para .card, .card-body, .card-text y .add-to-cart-btn
+   DEBEN ser revisadas si estás usando un diseño de card completamente basado en Tailwind CSS.
+   Si tu HTML de la tarjeta NO usa estas clases de Bootstrap, estas reglas son irrelevantes
+   para las tarjetas de producto y no interferirán.
+   Si las estás usando en OTRAS tarjetas que no son de producto y quieres que tengan este estilo,
+   déjalas. Si se aplican a las tarjetas de producto que estás estilizando con Tailwind,
+   debes eliminarlas o fusionar los estilos con Tailwind.
+   Por ahora, las he dejado porque no sé si las usas en otros lugares, pero tenlo en cuenta.
+*/
 .card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 22rem; /* Garantiza que todas las tarjetas tengan la misma altura */
+    /* Eliminado height: 22rem; - Esto es lo que más probablemente causaba conflicto de altura */
 }
 
 .card-body {

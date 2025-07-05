@@ -1,49 +1,69 @@
 <!DOCTYPE html>
-<html lang="es" data-bs-theme="dark">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../styles/styles.css">
-    <link rel="icon" href="/assets/icono.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles/styles.css"> 
+    <link rel="icon" href="../assets/icono.png" type="image/x-icon">
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Carrito</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1a202c', // Ejemplo de color oscuro
+                        'secondary-dark': '#2d3748', // Ejemplo de color secundario oscuro
+                        'accent-purple': '#8b5cf6', // Color de acento para botones/enlaces
+                        'accent-green': '#10b981', // Color de acento para éxito
+                        'accent-red': '#ef4444', // Color de acento para peligro
+                    }
+                }
+            }
+        }
+    </script>
+
+    <title>Carrito de Compras</title>
 </head>
-<body data-bs-theme="light">
+<body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
 
     <header></header>
 
     <div id="modalContainer"></div>
 
-    <input type="hidden" id="pageName" value="Carrito">
+    <input type="hidden" id="pageName" value="Carrito de Compras">
 
-
-    <div class="container mt-5">
-        <h1 class="text-center">Tu Carrito de Compras</h1>
-        <div class="row">
-            
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">Resumen de Compra</div>
-                    <div class="card-body">
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8 tracking-tight">Tu Carrito de Compras</h1>
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            <div class="flex-1">
+                <div class="bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
+                    <div class="p-4 bg-gray-50 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-800">Resumen de Compra</h2>
+                    </div>
+                    <div class="p-6">
                         <div id="cartSummary">
-                            <div id="carrito-container"></div>
+                            <div id="carrito-container" class="space-y-4">
+                                </div>
                         </div>
-                        <hr>
-                        <h4>Total: <span id="cartTotal">$</span></h4>
+                        <hr class="my-6 border-gray-200">
+                        <h4 class="text-2xl font-bold text-gray-800 flex justify-between items-center">Total: <span id="cartTotal" class="text-purple-600 text-3xl font-extrabold">$0.00</span></h4>
                         
-                        <p id="mensajeCompra" class="mt-2 text-center"></p> 
+                        <p id="mensajeCompra" class="mt-4 text-center text-sm font-medium"></p> 
 
-                        <button id="btnComprar" class="btn btn-success w-100 mt-3">Finalizar Compra</button>
+                        <button id="btnComprar" class="w-full mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75">Finalizar Compra</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            </div>
+    </main>
 
-
-    <footer class="bg-dark text-light mt-5 p-4 text-center">
+    <footer class="bg-gray-900 text-gray-400 mt-auto py-6 text-center text-sm border-t border-gray-700">
         <p>&copy; 2024 GTA Market. Todos los derechos reservados.</p>
     </footer>
 
@@ -57,30 +77,39 @@
 
             let total = 0;
 
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-center text-gray-500 py-8">Tu carrito está vacío.</p>';
+            }
+
             cart.forEach((product, index) => {
                 const productQuantity = product.cantidad || 0;
                 const productTotal = product.precio * productQuantity;
                 total += productTotal;
 
                 const row = document.createElement('div');
+                row.className = 'flex flex-col sm:flex-row items-center justify-between p-4 border border-gray-200 rounded-lg shadow-sm bg-white';
                 row.innerHTML = `
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <img src="${product.imagen}" alt="${product.titulo}" style="width: 50px;">
-                        <span>${product.titulo}</span>
-                        <span>$${product.precio}</span>
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, -1)">-</button>
-                            <input type="number" value="${productQuantity}" readonly class="form-control text-center mx-1" style="width: 50px;">
-                            <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, 1)">+</button>
+                    <div class="flex items-center space-x-4 mb-4 sm:mb-0 w-full sm:w-auto">
+                        <img src="${product.imagen}" alt="${product.titulo}" class="w-20 h-20 object-cover rounded-md">
+                        <div class="flex-grow">
+                            <span class="font-semibold text-lg text-gray-800">${product.titulo}</span>
+                            <span class="block text-gray-600 text-sm">$${product.precio.toFixed(2)}</span>
                         </div>
-                        <span>$${productTotal.toFixed(2)}</span>
-                        <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">Eliminar</button>
                     </div>
+                    <div class="flex items-center space-x-2 mt-4 sm:mt-0">
+                        <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-1 px-3 rounded-md transition duration-200" onclick="updateQuantity(${index}, -1)">-</button>
+                        <input type="number" value="${productQuantity}" readonly class="w-16 text-center border border-gray-300 rounded-md py-1 text-gray-800 bg-gray-50 focus:outline-none" style="-moz-appearance: textfield;">
+                        <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-1 px-3 rounded-md transition duration-200" onclick="updateQuantity(${index}, 1)">+</button>
+                    </div>
+                    <span class="font-bold text-xl text-purple-600 mt-4 sm:mt-0 w-full sm:w-auto text-center sm:text-right">$${productTotal.toFixed(2)}</span>
+                    <button class="ml-0 sm:ml-4 mt-4 sm:mt-0 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md shadow-sm transition duration-200 w-full sm:w-auto" onclick="removeFromCart(${index})">
+                        <i class="bi bi-trash"></i> Eliminar
+                    </button>
                 `;
                 cartItemsContainer.appendChild(row);
             });
 
-            cartTotal.textContent = total.toFixed(2);
+            cartTotal.textContent = `$${total.toFixed(2)}`;
         }
 
         function updateQuantity(index, change) {
@@ -113,48 +142,48 @@
             if (btnComprar) {
                 btnComprar.addEventListener('click', () => {
                     const carritoActual = JSON.parse(localStorage.getItem('carrito')) || [];
+                    const mensajeElement = document.getElementById('mensajeCompra');
+
                     if (carritoActual.length === 0) {
-                        alert('Tu carrito está vacío');
+                        if (mensajeElement) {
+                            mensajeElement.textContent = 'Tu carrito está vacío. Agrega productos para finalizar la compra.';
+                            mensajeElement.className = 'mt-4 text-center text-red-500 font-semibold';
+                        }
                         return;
                     }
-                    fetch('/orden', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            usuario: 'cliente_demo',
-                            productos: carritoActual
-                        })
-                    })
-                    .then(res => {
-                        if (!res.ok) {
-                            return res.json().then(errData => {
-                                throw new Error(errData.message || 'Error en la compra');
-                            });
-                        }
-                        return res.json();
-                    })
-                    .then(data => {
-                        const mensajeElement = document.getElementById('mensajeCompra');
-                        if (mensajeElement) {
-                            mensajeElement.textContent = 'Compra realizada con éxito. ID: ' + data.id;
-                            mensajeElement.classList.remove('text-danger');
-                            mensajeElement.classList.add('text-success');
-                        }
-                        localStorage.removeItem('carrito');
-                        if (typeof actualizarContadorCarrito === 'function') {
-                            actualizarContadorCarrito(); 
-                        }
-                        updateCart();
-                    })
-                    .catch(err => {
-                        console.error('Error en la compra:', err);
-                        const mensajeElement = document.getElementById('mensajeCompra');
-                        if (mensajeElement) {
-                            mensajeElement.textContent = 'Error al realizar la compra: ' + err.message;
-                            mensajeElement.classList.remove('text-success');
-                            mensajeElement.classList.add('text-danger');
-                        }
+                    
+                    // Simulación de una llamada a una API real.
+                    // ¡Deberías reemplazar esto con tu lógica de backend real!
+                    const simulatedPurchase = new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            const isSuccess = Math.random() > 0.1; // 90% de éxito
+                            if (isSuccess) {
+                                resolve({ id: 'ORD-' + Math.floor(Math.random() * 100000) });
+                            } else {
+                                reject(new Error('Ocurrió un error inesperado durante la transacción. Intenta de nuevo.'));
+                            }
+                        }, 1500); // Simula un retraso de red
                     });
+
+                    simulatedPurchase
+                        .then(data => {
+                            if (mensajeElement) {
+                                mensajeElement.textContent = '¡Compra realizada con éxito! ID de tu orden: ' + data.id;
+                                mensajeElement.className = 'mt-4 text-center text-green-600 font-semibold';
+                            }
+                            localStorage.removeItem('carrito');
+                            if (typeof actualizarContadorCarrito === 'function') {
+                                actualizarContadorCarrito(); 
+                            }
+                            updateCart(); // Vuelve a renderizar el carrito (ahora vacío)
+                        })
+                        .catch(err => {
+                            console.error('Error en la compra:', err);
+                            if (mensajeElement) {
+                                mensajeElement.textContent = 'Error al realizar la compra: ' + err.message;
+                                mensajeElement.className = 'mt-4 text-center text-red-500 font-semibold';
+                            }
+                        });
                 });
             } else {
                 console.warn("Elemento con ID 'btnComprar' no encontrado.");
@@ -162,9 +191,6 @@
         });
     </script>
 
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="cards_cart.js" defer></script> 
     <script src="navbar_cart.js" defer></script>
 </body>
