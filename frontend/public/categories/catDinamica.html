@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/icono.png" type="image/x-icon">
+    
+    <link rel="stylesheet" href="../styles/styles.css"> 
+    
+    <script src="https://cdn.tailwindcss.com"></script> 
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <title id="pageTitle">Cargando Producto...</title>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal"> 
+    
+    <header>
+    </header>
+    <div id="modalContainer"></div>
+
+    <main class="container mx-auto mt-8 px-4 py-8">
+        <div id="productContainer" class="bg-white rounded-lg shadow-xl overflow-hidden md:flex">
+            <div class="p-6 text-center text-gray-600 md:w-full">
+                <p class="text-xl font-semibold mb-4">Cargando detalles del producto...</p>
+                <i class="fas fa-spinner fa-spin text-4xl text-blue-500"></i>
+            </div>
+        </div>
+
+        <section class="mt-12 bg-white p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Productos Relacionados</h2>
+            <div id="relatedProductsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="p-6 text-center text-gray-600 md:w-full">
+                    <p class="text-xl font-semibold mb-4">Cargando productos relacionados...</p>
+                    <i class="fas fa-spinner fa-spin text-4xl text-blue-500"></i>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-900 text-white mt-8 p-6 text-center shadow-inner"> 
+        <p>&copy; 2024 GTA Market. Todos los derechos reservados.</p>
+    </footer> 
+    <script src="./navbar_cat.js" defer></script> 
+    <script>
+
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        async function loadProductData(productId) {
+            const productContainer = document.getElementById('productContainer');
+            const pageTitle = document.getElementById('pageTitle');
+
+            productContainer.innerHTML = `
+                <div class="p-6 text-center text-gray-600 md:w-full">
+                    <p class="text-xl font-semibold mb-4">Cargando detalles del producto...</p>
+                    <i class="fas fa-spinner fa-spin text-4xl text-blue-500"></i>
+                </div>
+            `;
+            pageTitle.textContent = "Cargando...";
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/products/${productId}`); 
+                
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        throw new Error(`Producto con ID ${productId} no encontrado.`);
+                    }
+                    throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
+                }
+                
+                const responsePayload = await response.json();
+
+                if (!responsePayload.status || !responsePayload.data) {
+                    throw new Error(responsePayload.message || 'La API devolvió un estado falso o datos incompletos.');
+                }
+
+                const product = responsePayload.data; 
+
+                productContainer.innerHTML = `
+                    <div class="md:w-1/2 p-6 flex items-center justify-center bg-gray-50">
+                        <img id="productImage" src="${product.imagenUrl}" alt="${product.nombre}" 
+                             class="max-w-full h-auto object-contain rounded-lg shadow-md max-h-[500px]">
+                    </div>
+                    <div class="md:w-1/2 p-6 flex flex-col justify-between">
+                        <div>
+                            <h1 id="productName" class="text-4xl font-extrabold text-gray-900 mb-3">${product.nombre}</h1>
+                            <p id="productCategory" class="text-sm text-gray-500 uppercase tracking-wider mb-4">Categoría: <span class="font-semibold text-gray-700">${product.categoria}</span></p>
+                            
+                            <p id="productDescription" class="text-gray-700 leading-relaxed mb-6 text-lg">${product.descripcion}</p>
+                            
+                            <div class="flex items-baseline mb-6">
+                                <span id="productPrice" class="text-5xl font-bold text-blue-600 mr-3">$${product.precio.toFixed(2)}</span>
+                            </div>
+
+                            <div class="text-gray-700 mb-6">
+                                <p class="mb-2"><span class="font-semibold">Disponibilidad:</span> 
+                                    <span id="productStock" class="text-green-600 font-bold">${product.stock > 0 ? `${product.stock} en stock` : 'Agotado'}</span>
+                                </p>
+                                <p class="mb-2"><span class="font-semibold">ID del Producto:</span> 
+                                    <span id="productOriginalId" class="text-gray-600">${product._id || product.id}</span>
+                                </p>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row gap-4 mt-8">
+                                <button id="addToCartBtn" 
+                                        class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg 
+                                               transition duration-300 ease-in-out flex items-center justify-center space-x-2">
+                                    <i class="bi bi-cart-plus-fill text-xl"></i>
+                                    <span>Agregar al Carrito</span>
+                                </button>
+                                <button id="buyNowBtn" 
+                                        class="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg 
+                                               transition duration-300 ease-in-out flex items-center justify-center space-x-2">
+                                    <i class="bi bi-wallet-fill text-xl"></i>
+                                    <span>Comprar Ahora</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                pageTitle.textContent = product.nombre; 
+
+                document.getElementById('addToCartBtn').addEventListener('click', () => {
+                    alert(`"${product.nombre}" agregado al carrito! (simulado desde página de detalle)`); 
+                });
+                document.getElementById('buyNowBtn').addEventListener('click', () => {
+                    alert(`Comprando "${product.nombre}" ahora! (simulado desde página de detalle)`);
+                });
+
+                loadRelatedProducts(product.categoria);
+            } catch (error) {
+                console.error('Error al cargar los datos del producto:', error);
+                productContainer.innerHTML = `
+                    <div class="p-6 text-center text-red-600 md:w-full">
+                        <p class="text-2xl font-semibold mb-4">Error al cargar el producto</p>
+                        <p>Detalle: ${error.message}</p>
+                        <p class="mt-4">Por favor, inténtalo de nuevo más tarde o verifica el ID del producto en la URL y la conexión con el servidor.</p>
+                    </div>
+                `;
+                pageTitle.textContent = "Error";
+            }
+        }
+
+        async function loadRelatedProducts(category = '') {
+            const relatedProductsContainer = document.getElementById('relatedProductsContainer');
+            relatedProductsContainer.innerHTML = `
+                <div class="p-6 text-center text-gray-600 md:w-full">
+                    <p class="text-xl font-semibold mb-4">Cargando productos relacionados...</p>
+                    <i class="fas fa-spinner fa-spin text-4xl text-blue-500"></i>
+                </div>
+            `;
+
+            try {
+
+                const relatedProductIds = [
+                    "68698ad7579af929dad20920", 
+                    "68698ad7579af929dad20921",
+                    "68698ad7579af929dad20925",
+                    "68698ad7579af929dad20926"
+                ];
+                
+                let relatedProductsHtml = '';
+                for (const id of relatedProductIds) {
+                    const response = await fetch(`http://localhost:3000/api/products/${id}`);
+                    if (response.ok) {
+                        const productPayload = await response.json();
+                        if (productPayload.status && productPayload.data) {
+                            const product = productPayload.data;
+                            let productIdString = product._id;
+                            if (typeof productIdString === 'object' && productIdString !== null && productIdString.toString) {
+                                productIdString = productIdString.toString();
+                            }
+
+                            relatedProductsHtml += `
+                                <a href="./catDinamica.html?id=${productIdString}" 
+                                   class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 block">
+                                    <img src="${product.imagenUrl}" alt="${product.nombre}" class="w-full h-48 object-cover">
+                                    <div class="p-4">
+                                        <h3 class="text-lg font-semibold text-gray-800 truncate">${product.nombre}</h3>
+                                        <p class="text-blue-600 font-bold text-xl mt-2">$${product.precio.toFixed(2)}</p>
+                                    </div>
+                                </a>
+                            `;
+                        }
+                    } else {
+                        console.warn(`No se pudo cargar el producto relacionado con ID: ${id}. Estado: ${response.status}`);
+                    }
+                }
+
+                if (relatedProductsHtml) {
+                    relatedProductsContainer.innerHTML = relatedProductsHtml;
+                } else {
+                    relatedProductsContainer.innerHTML = `
+                        <div class="p-6 text-center text-gray-600 md:w-full col-span-full">
+                            <p>No se encontraron productos relacionados.</p>
+                        </div>
+                    `;
+                }
+
+            } catch (error) {
+                console.error('Error al cargar los productos relacionados:', error);
+                relatedProductsContainer.innerHTML = `
+                    <div class="p-6 text-center text-red-600 md:w-full col-span-full">
+                        <p>Error al cargar productos relacionados: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const productId = getQueryParam('id'); 
+            if (productId) {
+                loadProductData(productId); 
+            } else {
+                const productContainer = document.getElementById('productContainer');
+                if (productContainer) {
+                    productContainer.innerHTML = `
+                        <div class="p-6 text-center text-gray-600 md:w-full">
+                            <p class="text-2xl font-semibold mb-4">No se especificó un producto.</p>
+                            <p>Por favor, navega desde una página de categoría o especifica un ID de producto en la URL (ej. ?id=1).</p>
+                        </div>
+                    `;
+                }
+                document.getElementById('pageTitle').textContent = "Producto no especificado";
+                document.getElementById('relatedProductsContainer').innerHTML = `
+                    <div class="p-6 text-center text-gray-600 md:w-full col-span-full">
+                        <p>No se pueden cargar productos relacionados sin un producto principal.</p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+
+</body>
+</html>

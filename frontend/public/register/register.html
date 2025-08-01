@@ -107,7 +107,7 @@
             const registerForm = document.getElementById('register-form');
             if (registerForm) {
                 registerForm.addEventListener('submit', async (event) => {
-                    event.preventDefault(); // Previene el envío por defecto del formulario
+                    event.preventDefault();
 
                     const firstName = document.getElementById('firstName').value;
                     const lastName = document.getElementById('lastName').value;
@@ -121,7 +121,6 @@
                         return;
                     }
 
-                    // Objeto con los datos del usuario para enviar
                     const userData = {
                         firstName,
                         lastName,
@@ -132,21 +131,16 @@
 
                     console.log('Datos de registro:', userData);
 
-                    // Simulación de la llamada al backend. ¡Reemplazar con tu fetch real!
                     try {
                         const simulatedResponse = await new Promise(resolve => setTimeout(() => {
-                            // Simula una respuesta exitosa
                             resolve({ ok: true, json: () => Promise.resolve({ status: true, message: 'Registro exitoso!' }) });
-                            // Para simular un error:
-                            // reject(new Error('El email ya está registrado.')); 
-                        }, 1000)); // Simula un retraso de red
+                        }, 1000));
 
                         const data = await simulatedResponse.json();
 
                         if (simulatedResponse.ok && data.status) {
                             alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
-                            // Redirigir al usuario, por ejemplo, a la página principal o de login
-                            window.location.href = '../index.html'; // Ajusta esta ruta si es necesario
+                            window.location.href = '../index.html';
                         } else {
                             alert('Error en el registro: ' + (data.message || 'Error desconocido.'));
                         }
@@ -158,10 +152,6 @@
             }
         });
 
-        // La función 'title' de navbar_register.js ya maneja el título dinámicamente
-        // if (titleElement) {
-        //     titleElement.textContent = `Bienvenido a ${pageName}`;
-        // }
     </script>
     
     </body>

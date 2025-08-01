@@ -5,41 +5,153 @@ const navElements = [
     { title: 'Decoración', link: '../categories/catDecoracion.html' }
 ];
 
-// Esta función se encarga de actualizar el carrito al cargar la página
 function agregarAlCarrito(producto) {
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const existingProductIndex = carrito.findIndex(item => item.id === producto.id);
-    if (existingProductIndex > -1) {
-        carrito[existingProductIndex].cantidad += 1;
-    } else {
-        producto.cantidad = 1;
-        carrito.push(producto);
+    try {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        const existingProductIndex = carrito.findIndex(item => item.id === producto.id);
+
+        if (existingProductIndex > -1) {
+            if (carrito[existingProductIndex].cantidad < 5) {
+                carrito[existingProductIndex].cantidad += 1;
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                actualizarContadorCarrito();
+                if (window.location.pathname.includes('/cart/cart.html')) {
+                    renderizarCarrito();
+                }
+            } else {
+                alert('¡Has alcanzado la cantidad máxima (5) para este producto en el carrito!');
+            }
+        } else {
+            producto.cantidad = 1;
+            carrito.push(producto);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            actualizarContadorCarrito();
+            if (window.location.pathname.includes('/cart/cart.html')) {
+                renderizarCarrito();
+            }
+        }
+    } catch (error) {
+        console.error('Error al agregar producto al carrito:', error);
     }
-    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+function actualizarContadorCarrito() {
+    try {
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+        const contadorElement = document.getElementById('contadorCarrito');
+
+        if (contadorElement) {
+            contadorElement.textContent = totalItems;
+            if (totalItems > 0) {
+                contadorElement.classList.remove('hidden');
+            } else {
+                contadorElement.classList.add('hidden');
+            }
+        } else {
+            console.warn("Elemento con ID 'contadorCarrito' no encontrado. El contador del carrito no se puede actualizar.");
+        }
+    } catch (error) {
+        console.error('Error al actualizar el contador del carrito:', error);
+    }
+}
+
+function incrementarCantidad(productId) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const productIndex = carrito.findIndex(item => item.id === productId);
+
+    if (productIndex > -1) {
+        if (carrito[productIndex].cantidad < 5) {
+            carrito[productIndex].cantidad += 1;
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            renderizarCarrito();
+            actualizarContadorCarrito();
+        } else {
+            alert('¡Has alcanzado la cantidad máxima (5) para este producto en el carrito!');
+        }
+    }
+}
+
+function decrementarCantidad(productId) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const productIndex = carrito.findIndex(item => item.id === productId);
+
+    if (productIndex > -1) {
+        if (carrito[productIndex].cantidad > 1) {
+            carrito[productIndex].cantidad -= 1;
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        } else {
+            carrito.splice(productIndex, 1);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        }
+        renderizarCarrito();
+        actualizarContadorCarrito();
+    }
+}
+
+function eliminarProductoDelCarrito(productId) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const updatedCarrito = carrito.filter(item => item.id !== productId);
+    localStorage.setItem('carrito', JSON.stringify(updatedCarrito));
+    renderizarCarrito();
     actualizarContadorCarrito();
 }
 
-// Esta función actualiza el contador del carrito en la parte superior de la página
-function actualizarContadorCarrito() {
+function renderizarCarrito() {
+    const carritoContainer = document.getElementById('resumenCompra');
+    const totalGlobalElement = document.getElementById('totalCarrito');
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+    let totalGlobal = 0;
 
-    const contadorElement = document.getElementById('contadorCarrito');
-
-    if (contadorElement) {
-        contadorElement.textContent = totalItems;
-        // Opcional: Mostrar/ocultar el contador si está en cero
-        if (totalItems > 0) {
-            contadorElement.classList.remove('hidden');
-        } else {
-            contadorElement.classList.add('hidden');
+    if (!carritoContainer) {
+        if (window.location.pathname.includes('/cart/cart.html')) {
+            console.warn("Contenedor del carrito ('resumenCompra') no encontrado en la página de carrito.");
         }
-    } else {
-        console.warn("Elemento con ID 'contadorCarrito' no encontrado.");
+        return;
+    }
+
+    carritoContainer.innerHTML = '';
+
+    if (carrito.length === 0) {
+        carritoContainer.innerHTML = '<p class="text-center text-gray-500 py-4">Tu carrito está vacío.</p>';
+        if (totalGlobalElement) {
+            totalGlobalElement.textContent = '$0.00';
+        }
+        return;
+    }
+
+    carrito.forEach(producto => {
+        const itemTotal = producto.cantidad * (producto.price || 0);
+        totalGlobal += itemTotal;
+
+        const productHtml = `
+            <div class="flex items-center justify-between py-4 border-b border-gray-200" data-product-id="${producto.id}">
+                <div class="flex items-center space-x-4">
+                    <img src="${producto.image || '../assets/placeholder.png'}" alt="${producto.name}" class="w-16 h-16 object-cover rounded">
+                    <div>
+                        <h3 class="font-semibold text-lg">${producto.name}</h3>
+                        <p class="text-gray-600">$${(producto.price || 0).toFixed(2)}</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center border border-gray-300 rounded-md">
+                        <button class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-l-md" onclick="decrementarCantidad('${producto.id}')">-</button>
+                        <span class="px-4 py-1 font-medium product-quantity">${producto.cantidad}</span>
+                        <button class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-r-md" onclick="incrementarCantidad('${producto.id}')">+</button>
+                    </div>
+                    <span class="font-semibold text-purple-700">$${itemTotal.toFixed(2)}</span>
+                    <button class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600" onclick="eliminarProductoDelCarrito('${producto.id}')">Eliminar</button>
+                </div>
+            </div>
+        `;
+        carritoContainer.innerHTML += productHtml;
+    });
+
+    if (totalGlobalElement) {
+        totalGlobalElement.textContent = `$${totalGlobal.toFixed(2)}`;
     }
 }
 
-////
 const navBar = `
     <nav class="bg-gray-900 text-white p-4 shadow-lg border-b border-gray-700">
         <div class="container mx-auto flex flex-wrap items-center justify-between">
@@ -91,7 +203,6 @@ const navBar = `
         </div>
     </nav>
 `;
-////
 
 let navContainer = document.querySelector('header');
 let modContainer = document.getElementById('modalContainer');
@@ -99,7 +210,6 @@ let pageNameElement = document.getElementById('pageName');
 let pageName = pageNameElement ? pageNameElement.value : '';
 let titleElement = document.getElementById('title');
 
-////
 const modal = `
     <div id="modal-login" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 hidden">
         <div class="bg-gray-800 text-white border border-gray-700 shadow-xl rounded-lg max-w-lg w-full mx-4 my-8 relative">
@@ -131,32 +241,107 @@ const modal = `
         </div>
     </div>
 `;
-////
+
+function setBtnLogin() {
+    const saveDataBtn = document.getElementById('btn-login');
+    const emailInput = document.getElementById('email-login');
+    const passwordInput = document.getElementById('password-login');
+
+    if (saveDataBtn && emailInput && passwordInput) {
+        saveDataBtn.addEventListener('click', async (event) => {
+            event.preventDefault();
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            if (!email || !password) {
+                alert('Por favor, ingresa tu correo electrónico y contraseña.');
+                return;
+            }
+
+            try {
+                const simulatedResponse = await new Promise(resolve => setTimeout(() => {
+                    if (email === "test@example.com" && password === "password123") {
+                        resolve({ ok: true, json: () => Promise.resolve({ status: true, nombre: "Usuario", apellido: "Demo" }) });
+                    } else {
+                        resolve({ ok: false, json: () => Promise.resolve({ status: false, message: "Credenciales inválidas" }) });
+                    }
+                }, 500));
+
+                const data = await simulatedResponse.json();
+
+                if (simulatedResponse.ok && data.status) {
+                    sessionStorage.setItem('usuario', JSON.stringify(data));
+                    alert(`¡Bienvenido/a ${data.nombre} ${data.apellido}!`);
+
+                    const modalLogin = document.getElementById('modal-login');
+                    if (modalLogin) modalLogin.classList.add('hidden');
+
+                    updateNavbarForUserStatus();
+                    window.location.reload();
+                } else {
+                    alert(`Error de inicio de sesión: ${data.message || 'Correo o contraseña incorrectos. Por favor, inténtalo de nuevo.'}`);
+                }
+            } catch (error) {
+                console.error('Error al iniciar sesión:', error);
+                alert('Ocurrió un error al intentar iniciar sesión. Por favor, inténtalo más tarde.');
+            }
+        });
+    } else {
+        console.warn("Botón de inicio de sesión o campos de entrada no encontrados. La funcionalidad de inicio de sesión podría estar comprometida.");
+    }
+}
+
+function updateNavbarForUserStatus() {
+    const usuarioGuardado = JSON.parse(sessionStorage.getItem('usuario'));
+    const registerBtn = document.querySelector('a[href="../register/register.html"]');
+    const loginBtn = document.getElementById('login-button-modal');
+    const logOutBtn = document.getElementById('logOutBtn');
+    const userDisplay = document.getElementById('user-display');
+
+    if (usuarioGuardado) {
+        if (registerBtn) registerBtn.classList.add('hidden');
+        if (loginBtn) loginBtn.classList.add('hidden');
+        if (logOutBtn) logOutBtn.classList.remove('hidden');
+        if (userDisplay) {
+            userDisplay.textContent = `👋 Hola, ${usuarioGuardado.nombre}`;
+            userDisplay.classList.remove('hidden');
+        }
+    } else {
+        if (registerBtn) registerBtn.classList.remove('hidden');
+        if (loginBtn) loginBtn.classList.remove('hidden');
+        if (logOutBtn) logOutBtn.classList.add('hidden');
+        if (userDisplay) userDisplay.classList.add('hidden');
+    }
+}
 
 window.addEventListener('load', () => {
+    const navContainer = document.querySelector('header');
+    const modContainer = document.getElementById('modalContainer');
+    const pageNameElement = document.getElementById('pageName');
+    const titleElement = document.getElementById('title');
+
     if (navContainer) {
         navContainer.innerHTML = navBar;
+    } else {
+        console.warn("Elemento 'header' no encontrado. La barra de navegación no se puede renderizar.");
     }
+
     if (modContainer) {
         modContainer.innerHTML = modal;
+    } else {
+        console.warn("Elemento contenedor del modal no encontrado. El modal no se puede renderizar.");
     }
+
     setBtnLogin();
     actualizarContadorCarrito();
 
-    // Asegurarse de que `titleElement` existe antes de intentar manipularlo
+    const pageName = pageNameElement ? pageNameElement.value : '';
     if (titleElement) {
-        // Usa `pageName` que ya fue definida desde el elemento hidden
         titleElement.textContent = `Bienvenido a ${pageName}`;
     }
+    document.title = pageName || "GTA Market";
 
-    // Asegurarse de que `document.title` se establece solo si pageName tiene un valor
-    if (pageName) {
-        document.title = pageName;
-    } else {
-        document.title = "GTA Market"; // Título por defecto si pageName no está definido
-    }
-
-    // --- Lógica de Navbar con Tailwind CSS y JS ---
     const navbarToggle = document.getElementById('navbar-toggle');
     const navbarContent = document.getElementById('navbarSupportedContent');
 
@@ -164,14 +349,11 @@ window.addEventListener('load', () => {
         navbarToggle.addEventListener('click', () => {
             navbarContent.classList.toggle('hidden');
             navbarContent.classList.toggle('flex');
-            // Actualizar aria-expanded para accesibilidad
             const isExpanded = navbarContent.classList.contains('flex');
             navbarToggle.setAttribute('aria-expanded', isExpanded);
         });
     }
 
-    // --- Lógica del Modal con Tailwind CSS y JS ---
-    // NOTA: El botón de login ahora tiene ID `login-button-modal` en la navbar
     const loginButtonModal = document.getElementById('login-button-modal');
     const modalLogin = document.getElementById('modal-login');
     const closeModalButton = document.getElementById('close-modal-button');
@@ -180,8 +362,6 @@ window.addEventListener('load', () => {
     if (loginButtonModal && modalLogin && closeModalButton && closeModalFooterButton) {
         loginButtonModal.addEventListener('click', () => {
             modalLogin.classList.remove('hidden');
-            // Opcional: añadir clase para animación de entrada si la defines en CSS
-            // modalLogin.classList.add('animate-fade-in');
         });
 
         closeModalButton.addEventListener('click', () => {
@@ -192,7 +372,6 @@ window.addEventListener('load', () => {
             modalLogin.classList.add('hidden');
         });
 
-        // Cerrar modal al hacer clic fuera de él
         modalLogin.addEventListener('click', (event) => {
             if (event.target === modalLogin) {
                 modalLogin.classList.add('hidden');
@@ -202,88 +381,20 @@ window.addEventListener('load', () => {
 
     const logOutButton = document.getElementById('logOutBtn');
     if (logOutButton) {
-        logOutButton.addEventListener('click', function() {
+        logOutButton.addEventListener('click', () => {
             sessionStorage.clear();
-            updateNavbarForUserStatus(); // Actualiza el navbar inmediatamente
-            window.location.reload(); // Recarga la página para reflejar el estado de la sesión
+            updateNavbarForUserStatus();
+            window.location.reload();
         });
     }
 
-    // Lógica para mostrar/ocultar botones de login/logout al cargar la página
     updateNavbarForUserStatus();
+
+    if (window.location.pathname.includes('/cart/cart.html')) {
+        renderizarCarrito();
+    }
 });
 
-function setBtnLogin(){
-    const saveDataBtn = document.getElementById('btn-login');
-    const emailInput = document.getElementById('email-login');
-    const passwordInput = document.getElementById('password-login'); // Asegúrate de obtener el input de contraseña
-
-    if (saveDataBtn && emailInput && passwordInput) { // Verificar que ambos inputs existan
-        saveDataBtn.addEventListener('click', async (event) => {
-            event.preventDefault(); // Evita el envío del formulario por defecto
-
-            const email = emailInput.value;
-            const password = passwordInput.value; // Obtener la contraseña
-
-            // Simulación de la llamada al backend. ¡Reemplazar con tu fetch real!
-            // Para probar: email "test@example.com", password "password123" para login exitoso
-            try {
-                const simulatedResponse = await new Promise(resolve => setTimeout(() => {
-                    if (email === "test@example.com" && password === "password123") {
-                        resolve({ ok: true, json: () => Promise.resolve({ status: true, nombre: "Usuario", apellido: "Demo" }) });
-                    } else {
-                        resolve({ ok: false, json: () => Promise.resolve({ status: false }) });
-                    }
-                }, 500));
-
-                const data = await simulatedResponse.json();
-
-                if (simulatedResponse.ok && data.status) {
-                    sessionStorage.setItem('usuario', JSON.stringify(data));
-                    alert(`¡Bienvenido/a ${data.nombre} ${data.apellido}!`);
-
-                    // Cerrar el modal manualmente con Tailwind JS
-                    const modalLogin = document.getElementById('modal-login');
-                    if (modalLogin) modalLogin.classList.add('hidden');
-
-                    updateNavbarForUserStatus(); // Actualiza el navbar después del login
-                    window.location.reload(); // Recarga la página para refrescar el estado de la UI
-                } else {
-                    alert('Correo o contraseña incorrectos. Por favor, inténtalo de nuevo.');
-                }
-            } catch (error) {
-                console.error('Error al iniciar sesión:', error);
-                alert('Ocurrió un error al intentar iniciar sesión. Por favor, inténtalo más tarde.');
-            }
-        });
-    }
-}
-
-// Función para actualizar la visibilidad de los botones del navbar según el estado de la sesión
-function updateNavbarForUserStatus() {
-    const usuarioGuardado = JSON.parse(sessionStorage.getItem('usuario'));
-    const registerBtn = document.querySelector('a[href="../register/register.html"]'); // Ajuste de ruta
-    const loginBtn = document.getElementById('login-button-modal'); // Usar el ID específico
-    const logOutBtn = document.getElementById('logOutBtn');
-    const userDisplay = document.getElementById('user-display');
-
-    if (usuarioGuardado) {
-        if (registerBtn) registerBtn.classList.add('hidden');
-        if (loginBtn) loginBtn.classList.add('hidden');
-        if (logOutBtn) logOutBtn.classList.remove('hidden');
-        if (userDisplay) {
-            userDisplay.textContent = `👋 Hola, ${usuarioGuardado.nombre}`;
-            userDisplay.classList.remove('hidden'); // Mostrar el saludo al usuario
-        }
-    } else {
-        if (registerBtn) registerBtn.classList.remove('hidden');
-        if (loginBtn) loginBtn.classList.remove('hidden');
-        if (logOutBtn) logOutBtn.classList.add('hidden');
-        if (userDisplay) userDisplay.classList.add('hidden'); // Ocultar el saludo si no hay usuario
-    }
-}
-
-// Llama a la función al cargar el DOM para asegurar que el estado inicial es correcto
 document.addEventListener('DOMContentLoaded', () => {
     updateNavbarForUserStatus();
 });

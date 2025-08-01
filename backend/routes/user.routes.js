@@ -1,5 +1,4 @@
 import { Router } from "express";
-// ELIMINAR ESTA LÍNEA: import { connectToDatabase } from './../database/db.js';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { verificarTokenMiddleware } from './../utils/middleware.js';
@@ -20,9 +19,8 @@ router.post('/comprar', verificarTokenMiddleware, (req, res) => {
 
 // Generar un token secreto (Login con MongoDB)
 router.post('/login', async (req, res) => {
-    // Ya no necesitas 'let db;' ni 'db = await connectToDatabase();'
+
     try {
-        // Accede a la instancia de la base de datos a través de req.db
         const usersCollection = req.db.collection('usuarios');
 
         const userName = req.body.nombre;
@@ -57,9 +55,7 @@ router.post('/login', async (req, res) => {
 
 // Crea un nuevo usuario
 router.post('/create', async (req, res) => {
-    // Ya no necesitas 'let db;' ni 'db = await connectToDatabase();'
     try {
-        // Accede a la instancia de la base de datos a través de req.db
         const usersCollection = req.db.collection('usuarios');
 
         const { nombre, apellido, email, contraseña } = req.body;
@@ -97,9 +93,7 @@ router.post('/create', async (req, res) => {
 
 // Ruta para buscar al usuario
 router.post('/search', async (req, res) => {
-    // Ya no necesitas 'let db;' ni 'db = await connectToDatabase();'
     try {
-        // Accede a la instancia de la base de datos a través de req.db
         const usersCollection = req.db.collection('usuarios');
 
         const userEmail = req.body.email;

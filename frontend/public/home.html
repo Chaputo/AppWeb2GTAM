@@ -12,42 +12,62 @@
     <link rel="icon" href="/assets/icono.png" type="image/x-icon">
     <title>GTA Market</title>
 </head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal"> <header></header>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal"> 
+    <header></header>
     <div id="modalContainer"></div>
 
     <input type="hidden" id="pageName" value="GTA Market">
 
-    <div class="container mx-auto mt-8 px-4"> <h1 id="title" class="text-3xl font-bold mb-6 text-gray-800"></h1> </div>
-
-    <div class="flex flex-nowrap overflow-x-auto w-full p-5 space-x-4 mb-8" 
-         style="background-image: url(https://preview.redd.it/nduksi52zrs41.jpg?auto=webp&s=0760039b9b3ebdb699ef6569ee313b787f27375c); background-size: cover; background-position: center; background-repeat: no-repeat;">
-        <div class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105">
-            <img src="https://images.cdn2.buscalibre.com/fit-in/360x360/98/76/9876c294501df52e7732902dc5b376a4.jpg" class="w-full h-full object-cover" alt="GTA V">
-        </div>
-        <div class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105">
-            <img src="https://s0.smartresize.com/wallpaper/717/232/HD-wallpaper-gta-iv-grand-theft-auto-iv-niko-bellic-artwork-games-thumbnail.jpg" class="w-full h-full object-cover" alt="GTA IV">
-        </div>
-        <div class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105">
-            <img src="https://i.pinimg.com/originals/af/4f/dc/af4fdc071ddbb3e96cdbad58e8f16778.jpg" class="w-full h-full object-cover" alt="GTA San Andreas">
-        </div>
-        <div class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105">
-            <img src="https://cdn1.epicgames.com/offer/fd6a13a256014a22a83ff2aaacc30e00/EGS_GrandTheftAutoViceCityTheDefinitiveEdition_RockstarGames_S2_1200x1600-18ac3dd32143492b2650144da0cf0ca9" class="w-full h-full object-cover" alt="GTA Vice City">
-        </div>
-        </div>
-
-    <div class="mb-6 px-4 max-w-lg mx-auto"> <label for="filtroCategoria" class="block text-lg font-semibold text-gray-800 mb-2">
-            Filtrar por categoría:
-        </label>
-        <select id="filtroCategoria" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
-            <option value="todas">Todas</option>
-            </select>
+    <div class="container mx-auto mt-8 px-4"> 
+        <h1 id="title" class="text-3xl font-bold mb-6 text-gray-800"></h1> 
     </div>
 
-  
+    <div class="flex flex-nowrap overflow-x-auto w-full p-5 space-x-4 mb-8
+                 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:justify-items-center
+                 lg:grid-cols-4 lg:gap-6 lg:p-8" 
+           style="background-image: url(https://preview.redd.it/nduksi52zrs41.jpg?auto=webp&s=0760039b9b3ebdb699ef6569ee313b787f27375c); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        
+        <a href="./categories/catDinamica.html?id=68698ad7579af929dad20920" 
+           class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105
+                   md:w-full md:max-w-xs lg:w-full block"> 
+            <img src="https://images.cdn2.buscalibre.com/fit-in/360x360/98/76/9876c294501df52e7732902dc5b376a4.jpg" 
+                 class="w-full h-full object-cover" alt="GTA V">
+        </a>
 
-    <button id="btnComprar" class="hidden"></button> <div id="mensajeCompra" class="hidden"></div> <div class="container mx-auto mt-8 px-4">
-        <div class="flex flex-wrap -mx-4"> <div class="w-full lg:w-1/4 px-4 bg-gray-50 text-gray-700 p-4 rounded-lg shadow-md">
+        <a href="./categories/catDinamica.html?id=68698ad7579af929dad20921"
+           class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105
+                   md:w-full md:max-w-xs lg:w-full block">
+            <img src="https://s0.smartresize.com/wallpaper/717/232/HD-wallpaper-gta-iv-grand-theft-auto-iv-niko-bellic-artwork-games-thumbnail.jpg" 
+                 class="w-full h-full object-cover" alt="GTA IV">
+        </a>
+
+        <a href="./categories/catDinamica.html?id=68698ad7579af929dad20925"
+           class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105
+                   md:w-full md:max-w-xs lg:w-full block">
+            <img src="https://i.pinimg.com/originals/af/4f/dc/af4fdc071ddbb3e96cdbad58e8f16778.jpg" 
+                 class="w-full h-full object-cover" alt="GTA San Andreas">
+        </a>
+
+        <a href="./categories/catDinamica.html?id=68698ad7579af929dad20926"
+           class="flex-none w-60 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105
+                   md:w-full md:max-w-xs lg:w-full block">
+            <img src="https://cdn1.epicgames.com/offer/fd6a13a256014a22a83ff2aaacc30e00/EGS_GrandTheftAutoViceCityTheDefinitiveEdition_RockstarGames_S2_1200x1600-18ac3dd32143492b2650144da0cf0ca9" 
+                 class="w-full h-full object-cover" alt="GTA Vice City">
+        </a>
+    </div>
+
+    <div class="container mx-auto mt-8 px-4">
+        <div class="flex flex-wrap -mx-4"> 
+            <div class="w-full lg:w-1/4 px-4 bg-gray-50 text-gray-700 p-4 rounded-lg shadow-md lg:mb-0">
                 <div class="space-y-6">
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <div class="p-4 border-b border-gray-200 font-semibold text-lg">Filtrar por Categoría</div>
+                        <div class="p-4">
+                            <select id="filtroCategoria" class="p-2 border border-gray-300 rounded-md shadow-sm w-full focus:ring-blue-500 focus:border-blue-500">
+                                <option value="todas">Todas</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="bg-white rounded-lg shadow-sm">
                         <div class="p-4 border-b border-gray-200 font-semibold text-lg">Notificaciones</div>
                         <div class="p-4">
@@ -91,11 +111,15 @@
             <div class="w-full lg:w-3/4 px-4">
                 <div id="contenedorProductos" class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4"></div>
             </div>
+        </div>
     </div>
+    
+    <button id="btnComprar" class="hidden"></button> 
+    <div id="mensajeCompra" class="hidden"></div> 
     
     <footer class="bg-gray-900 text-white mt-8 p-6 text-center shadow-inner">
         <p>&copy; 2024 GTA Market. Todos los derechos reservados.</p>
-    </footer>    
+    </footer>     
     
     <script src="./navbar_home.js" defer></script>
     <script src="./index.js" defer></script> 

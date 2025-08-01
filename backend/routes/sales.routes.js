@@ -1,14 +1,16 @@
 import { Router } from "express";
-import { ObjectId } from "mongodb"; // Necesario para buscar por ID de MongoDB
+import { ObjectId } from "mongodb";
 import { verificarTokenMiddleware } from './../utils/middleware.js';
 
 const router = Router();
 
 // Ruta para obtener todas las ventas (puede requerir autenticación y/o roles de admin)
-router.get('/', verificarTokenMiddleware, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const salesCollection = req.db.collection('ventas');
+        
         const sales = await salesCollection.find({}).toArray();
+        
         res.status(200).json({
             status: true,
             message: "Ventas obtenidas correctamente",
@@ -47,9 +49,8 @@ router.get('/:id', verificarTokenMiddleware, async (req, res) => {
     }
 });
 
-// Ruta para crear una nueva venta (requiere token de autenticación)
-// Asume que el cuerpo de la petición contendrá userId, products (array de objetos con productId y cantidad), y total.
-router.post('/create', verificarTokenMiddleware, async (req, res) => {
+
+router.post('/create', /*verificarTokenMiddleware,*/ async (req, res) => {
     try {
         const salesCollection = req.db.collection('ventas');
         const { userId, items, total, estado, direccionEnvio } = req.body;
@@ -58,21 +59,20 @@ router.post('/create', verificarTokenMiddleware, async (req, res) => {
             return res.status(400).json({ status: false, message: "Faltan campos obligatorios o formato incorrecto: userId, items (array no vacío), total." });
         }
 
-        // Puedes añadir validación adicional para los items (e.g., que cada item tenga productId y cantidad)
         const validatedItems = items.map(item => ({
-            productId: ObjectId.isValid(item.productId) ? new ObjectId(item.productId) : item.productId, // Asegura que sea un ObjectId si es un ID de MongoDB
-            nombre: item.nombre, // Puedes incluir el nombre del producto para referencia
+            productId: ObjectId.isValid(item.productId) ? new ObjectId(item.productId) : item.productId,
+            nombre: item.nombre,
             cantidad: parseInt(item.cantidad),
             precioUnitario: parseFloat(item.precioUnitario)
         }));
 
         const newSale = {
-            userId: ObjectId.isValid(userId) ? new ObjectId(userId) : userId, // Convierte userId a ObjectId si es un ID de MongoDB
+            userId: ObjectId.isValid(userId) ? new ObjectId(userId) : userId,
             items: validatedItems,
             total: parseFloat(total),
-            estado: estado || 'pendiente', // Por defecto 'pendiente'
+            estado: estado || 'pendiente',
             fechaVenta: new Date(),
-            direccionEnvio: direccionEnvio || {}, // Objeto con detalles de envío
+            direccionEnvio: direccionEnvio || {},
         };
 
         const result = await salesCollection.insertOne(newSale);

@@ -16,11 +16,11 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary-dark': '#1a202c', // Ejemplo de color oscuro
-                        'secondary-dark': '#2d3748', // Ejemplo de color secundario oscuro
-                        'accent-purple': '#8b5cf6', // Color de acento para botones/enlaces
-                        'accent-green': '#10b981', // Color de acento para éxito
-                        'accent-red': '#ef4444', // Color de acento para peligro
+                        'primary-dark': '#1a202c',
+                        'secondary-dark': '#2d3748',
+                        'accent-purple': '#8b5cf6',
+                        'accent-green': '#10b981',
+                        'accent-red': '#ef4444',
                     }
                 }
             }
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
     </main>
 
     <footer class="bg-gray-900 text-gray-400 mt-auto py-6 text-center text-sm border-t border-gray-700">
@@ -68,17 +68,19 @@
     </footer>
 
     <script>
-        const cart = JSON.parse(localStorage.getItem('carrito')) || []; 
+        let cart = JSON.parse(localStorage.getItem('carrito')) || []; 
 
         function updateCart() {
             const cartItemsContainer = document.getElementById('carrito-container');
             const cartTotal = document.getElementById('cartTotal');
-            cartItemsContainer.innerHTML = '';
+            cartItemsContainer.innerHTML = ''; 
 
             let total = 0;
 
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<p class="text-center text-gray-500 py-8">Tu carrito está vacío.</p>';
+                cartTotal.textContent = "$0.00";
+                return;
             }
 
             cart.forEach((product, index) => {
@@ -86,23 +88,29 @@
                 const productTotal = product.precio * productQuantity;
                 total += productTotal;
 
+                const imagen = product.imagen || product.imagenUrl || 'https://via.placeholder.com/80';
+                const titulo = product.titulo || product.nombre || 'Producto sin nombre';
+
                 const row = document.createElement('div');
-                row.className = 'flex flex-col sm:flex-row items-center justify-between p-4 border border-gray-200 rounded-lg shadow-sm bg-white';
+                row.className = 'flex flex-wrap sm:flex-nowrap items-center justify-between p-4 border border-gray-200 rounded-lg shadow-sm bg-white';
                 row.innerHTML = `
-                    <div class="flex items-center space-x-4 mb-4 sm:mb-0 w-full sm:w-auto">
-                        <img src="${product.imagen}" alt="${product.titulo}" class="w-20 h-20 object-cover rounded-md">
-                        <div class="flex-grow">
-                            <span class="font-semibold text-lg text-gray-800">${product.titulo}</span>
-                            <span class="block text-gray-600 text-sm">$${product.precio.toFixed(2)}</span>
+                    <div class="flex items-center space-x-4 flex-shrink-0 mb-4 sm:mb-0 w-full sm:w-1/2 lg:w-2/5">
+                        <img src="${imagen}" alt="${titulo}" class="w-20 h-20 object-cover rounded-md">
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-lg text-gray-800">${titulo}</span>
+                            <span class="text-gray-600 text-sm">$${product.precio.toFixed(2)}</span>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-2 mt-4 sm:mt-0">
+
+                    <div class="flex items-center space-x-2 justify-center flex-shrink-0 mb-4 sm:mb-0 w-full sm:w-auto">
                         <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-1 px-3 rounded-md transition duration-200" onclick="updateQuantity(${index}, -1)">-</button>
                         <input type="number" value="${productQuantity}" readonly class="w-16 text-center border border-gray-300 rounded-md py-1 text-gray-800 bg-gray-50 focus:outline-none" style="-moz-appearance: textfield;">
                         <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-1 px-3 rounded-md transition duration-200" onclick="updateQuantity(${index}, 1)">+</button>
                     </div>
-                    <span class="font-bold text-xl text-purple-600 mt-4 sm:mt-0 w-full sm:w-auto text-center sm:text-right">$${productTotal.toFixed(2)}</span>
-                    <button class="ml-0 sm:ml-4 mt-4 sm:mt-0 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md shadow-sm transition duration-200 w-full sm:w-auto" onclick="removeFromCart(${index})">
+
+                    <span class="font-bold text-xl text-purple-600 flex-shrink-0 mb-4 sm:mb-0 w-full sm:w-auto text-center sm:text-right">$${productTotal.toFixed(2)}</span>
+                    
+                    <button class="flex-shrink-0 ml-0 sm:ml-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md shadow-sm transition duration-200 w-full sm:w-auto" onclick="removeFromCart(${index})">
                         <i class="bi bi-trash"></i> Eliminar
                     </button>
                 `;
@@ -113,15 +121,26 @@
         }
 
         function updateQuantity(index, change) {
-            if (cart[index] && (cart[index].cantidad || 0) + change >= 0) {
-                cart[index].cantidad = (cart[index].cantidad || 0) + change;
-                if (cart[index].cantidad === 0) {
-                    cart.splice(index, 1);
+            if (cart[index]) {
+                const currentQuantity = cart[index].cantidad || 0;
+                let newQuantity = currentQuantity + change;
+
+                if (newQuantity < 0) {
+                    newQuantity = 0;
                 }
-                localStorage.setItem('carrito', JSON.stringify(cart));
-                updateCart();
-                if (typeof actualizarContadorCarrito === 'function') {
-                    actualizarContadorCarrito(); 
+                if (newQuantity > 5) {
+                    newQuantity = 5;
+                }
+
+                if (newQuantity !== currentQuantity) {
+                    cart[index].cantidad = newQuantity;
+                    
+                    localStorage.setItem('carrito', JSON.stringify(cart));
+                    updateCart(); 
+                    
+                    if (typeof actualizarContadorCarrito === 'function') {
+                        actualizarContadorCarrito(); 
+                    }
                 }
             }
         }
@@ -141,10 +160,9 @@
             const btnComprar = document.getElementById('btnComprar');
             if (btnComprar) {
                 btnComprar.addEventListener('click', () => {
-                    const carritoActual = JSON.parse(localStorage.getItem('carrito')) || [];
                     const mensajeElement = document.getElementById('mensajeCompra');
 
-                    if (carritoActual.length === 0) {
+                    if (cart.length === 0) {
                         if (mensajeElement) {
                             mensajeElement.textContent = 'Tu carrito está vacío. Agrega productos para finalizar la compra.';
                             mensajeElement.className = 'mt-4 text-center text-red-500 font-semibold';
@@ -152,17 +170,15 @@
                         return;
                     }
                     
-                    // Simulación de una llamada a una API real.
-                    // ¡Deberías reemplazar esto con tu lógica de backend real!
                     const simulatedPurchase = new Promise((resolve, reject) => {
                         setTimeout(() => {
-                            const isSuccess = Math.random() > 0.1; // 90% de éxito
+                            const isSuccess = Math.random() > 0.1;
                             if (isSuccess) {
                                 resolve({ id: 'ORD-' + Math.floor(Math.random() * 100000) });
                             } else {
                                 reject(new Error('Ocurrió un error inesperado durante la transacción. Intenta de nuevo.'));
                             }
-                        }, 1500); // Simula un retraso de red
+                        }, 1500);
                     });
 
                     simulatedPurchase
@@ -171,11 +187,12 @@
                                 mensajeElement.textContent = '¡Compra realizada con éxito! ID de tu orden: ' + data.id;
                                 mensajeElement.className = 'mt-4 text-center text-green-600 font-semibold';
                             }
-                            localStorage.removeItem('carrito');
+                            localStorage.removeItem('carrito'); 
+                            cart = []; 
                             if (typeof actualizarContadorCarrito === 'function') {
                                 actualizarContadorCarrito(); 
                             }
-                            updateCart(); // Vuelve a renderizar el carrito (ahora vacío)
+                            updateCart(); 
                         })
                         .catch(err => {
                             console.error('Error en la compra:', err);

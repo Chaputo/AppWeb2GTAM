@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="es"> <head>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/assets/icono.png" type="image/x-icon">
+    <link rel="icon" href="../assets/icono.png" type="image/x-icon"> 
     
-    <link rel="stylesheet" href="../../styles/styles.css"> 
+    <link rel="stylesheet" href="../styles/styles.css"> 
     
     <script src="https://cdn.tailwindcss.com"></script> 
     
@@ -14,43 +15,62 @@
     
     <title>Videojuegos</title>
 </head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal"> <header></header>
-    <div id="modalContainer"></div>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal"> 
+    
+    <header></header> <div id="modalContainer"></div>
 
-    <input type="hidden" id="pageName" value="Videojuegos">
+    <input type="hidden" id="pageName" value="Bienvenido a Videojuegos">
 
-    <div class="container mx-auto mt-8 px-4"> <h1 id="title" class="text-3xl font-bold mb-6 text-gray-800"></h1> </div>
+    <main class="container mx-auto mt-8 px-4 py-8"> 
+        <h1 id="title" class="text-3xl font-bold mb-6 text-gray-800 text-center"></h1> 
 
-    <div class="text-center"> <div class="container-fluid">
-            <div id="carouselExample" class="relative overflow-hidden" data-carousel-interval="5000">
-                <div class="relative h-96 overflow-hidden rounded-lg">
-                    <div class="absolute inset-0 transition-transform duration-700 ease-in-out transform translate-x-0" data-carousel-item>
-                        <img src="https://wallpapercat.com/w/full/5/1/f/130392-3840x2160-desktop-4k-grand-theft-auto-5-wallpaper-image.jpg" class="block w-full h-full object-cover" alt="...">
+        <div class="text-center mb-8"> 
+            <div class="container-fluid">
+                <div id="carouselExample" class="relative overflow-hidden" data-carousel-interval="5000">
+                    <div class="relative h-96 overflow-hidden rounded-lg">
+                        <div class="absolute inset-0 transition-transform duration-700 ease-in-out transform translate-x-0" data-carousel-item>
+                            <img src="https://wallpapercat.com/w/full/5/1/f/130392-3840x2160-desktop-4k-grand-theft-auto-5-wallpaper-image.jpg" class="block w-full h-full object-cover" alt="Carousel Image 1">
+                        </div>
+                        <div class="absolute inset-0 transition-transform duration-700 ease-in-out transform translate-x-full" data-carousel-item>
+                            <img src="https://images7.alphacoders.com/134/1343661.jpeg" class="block w-full h-full object-cover" alt="Carousel Image 2">
+                        </div>
+                        <div class="absolute inset-0 transition-transform duration-700 ease-in-out transform translate-x-full" data-carousel-item>
+                            <img src="https://images6.alphacoders.com/134/1344450.jpeg" class="block w-full h-full object-cover" alt="Carousel Image 3">
+                        </div>
                     </div>
-                    <div class="absolute inset-0 transition-transform duration-700 ease-in-out transform translate-x-full" data-carousel-item>
-                        <img src="https://images7.alphacoders.com/134/1343661.jpeg" class="block w-full h-full object-cover" alt="...">
-                    </div>
-                    <div class="absolute inset-0 transition-transform duration-700 ease-in-out transform translate-x-full" data-carousel-item>
-                        <img src="https://images6.alphacoders.com/134/1344450.jpeg" class="block w-full h-full object-cover" alt="...">
-                    </div>
+                    <button type="button" class="absolute top-1/2 left-0 z-30 flex items-center justify-center h-10 w-10 px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                            <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/></svg>
+                            <span class="sr-only">Previous</span>
+                        </span>
+                    </button>
+                    <button type="button" class="absolute top-1/2 right-0 z-30 flex items-center justify-center h-10 w-10 px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                            <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 9l4-4-4-4"/></svg>
+                            <span class="sr-only">Next</span>
+                        </span>
+                    </button>
                 </div>
-                <button type="button" class="absolute top-1/2 left-0 z-30 flex items-center justify-center h-10 w-10 px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
-                        <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/></svg>
-                        <span class="sr-only">Previous</span>
-                    </span>
-                </button>
-                <button type="button" class="absolute top-1/2 right-0 z-30 flex items-center justify-center h-10 w-10 px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
-                        <svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 9l4-4-4-4"/></svg>
-                        <span class="sr-only">Next</span>
-                    </span>
-                </button>
             </div>
         </div>
-    </div>
 
-    <div class="container mx-auto mt-8 px-4"> <div class="flex flex-wrap -mx-4"> <div class="w-full lg:w-1/4 px-4 bg-gray-50 text-gray-700 p-4 rounded-lg shadow-md"> <div class="space-y-6"> <div class="bg-white rounded-lg shadow-sm"> <div class="p-4 border-b border-gray-200 font-semibold text-lg">Notificaciones</div> <div class="p-4"> <ul class="space-y-3"> <li class="p-3 bg-green-100 border border-green-200 rounded-md"> <p class="text-sm text-gray-500">LLEGÓ TU COMPRA</p>
+        <div class="flex flex-wrap -mx-4"> 
+            <div class="w-full lg:w-1/4 px-4 bg-gray-50 text-gray-700 p-4 rounded-lg shadow-md mb-6 lg:mb-0"> 
+                <div class="space-y-6"> 
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <div class="p-4 border-b border-gray-200 font-semibold text-lg">Filtrar por Categoría</div>
+                        <div class="p-4">
+                            <select id="filtroCategoria" class="p-2 border border-gray-300 rounded-md shadow-sm w-full focus:ring-blue-500 focus:border-blue-500">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm"> 
+                        <div class="p-4 border-b border-gray-200 font-semibold text-lg">Notificaciones</div> 
+                        <div class="p-4"> 
+                            <ul class="space-y-3"> 
+                                <li class="p-3 bg-green-100 border border-green-200 rounded-md"> 
+                                    <p class="text-sm text-gray-500">LLEGÓ TU COMPRA</p>
                                     <p class="font-medium">Llegó tu compra</p>
                                 </li>
                                 <li class="p-3 bg-green-100 border border-green-200 rounded-md">
@@ -65,7 +85,7 @@
                         </div>
                     </div>
                     <div class="bg-white rounded-lg shadow-sm">
-                        <div class="p-4 border-b border-gray-200 font-semibold text-lg">Notificaciones</div>
+                        <div class="p-4 border-b border-gray-200 font-semibold text-lg">Más Notificaciones</div>
                         <div class="p-4">
                             <ul class="space-y-3">
                                 <li class="p-3 bg-green-100 border border-green-200 rounded-md">
@@ -85,15 +105,95 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full lg:w-3/4 px-4"> <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6" id="contenedorProductos"> </div>
+            
+            <div class="w-full lg:w-3/4 px-4"> 
+                <div id="contenedorProductos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 bg-white rounded-lg shadow-md"> 
+                    <p class="text-center text-gray-500 col-span-full">Cargando productos...</p>
                 </div>
             </div>
-    </div>
-    <footer class="bg-gray-900 text-white mt-8 p-6 text-center shadow-inner"> <p>&copy; 2024 GTA Market. Todos los derechos reservados.</p>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white mt-8 p-6 text-center shadow-inner"> 
+        <p>&copy; 2024 GTA Market. Todos los derechos reservados.</p>
     </footer> 
     
-    <script src="navbar_cat.js" defer></script> 
-    <script src="cards_cat.js" defer></script> 
+    <script src="./navbar_cat.js" defer></script> 
+    <script src="./cards_cat.js" defer></script> 
     
-    </body>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            const carousel = document.getElementById('carouselExample');
+            if (!carousel) return;
+
+            const items = carousel.querySelectorAll('[data-carousel-item]');
+            const prevButton = carousel.querySelector('[data-carousel-prev]');
+            const nextButton = carousel.querySelector('[data-carousel-next]');
+            let currentItem = 0;
+            let intervalId;
+
+            function showItem(index) {
+                items.forEach((item, i) => {
+                    if (i === index) {
+                        item.classList.remove('translate-x-full', '-translate-x-full');
+                        item.classList.add('translate-x-0');
+                        item.style.zIndex = 1;
+                    } else if (i < index) {
+                        item.classList.remove('translate-x-0', 'translate-x-full');
+                        item.classList.add('-translate-x-full');
+                        item.style.zIndex = 0;
+                    } else {
+                        item.classList.remove('translate-x-0', '-translate-x-full');
+                        item.classList.add('translate-x-full');
+                        item.style.zIndex = 0;
+                    }
+                });
+            }
+
+            function nextItem() {
+                currentItem = (currentItem + 1) % items.length;
+                showItem(currentItem);
+            }
+
+            function prevItem() {
+                currentItem = (currentItem - 1 + items.length) % items.length;
+                showItem(currentItem);
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    clearInterval(intervalId);
+                    prevItem();
+                    startCarousel();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    clearInterval(intervalId);
+                    nextItem();
+                    startCarousel();
+                });
+            }
+
+            function startCarousel() {
+                clearInterval(intervalId);
+                const interval = parseInt(carousel.getAttribute('data-carousel-interval'), 10) || 5000;
+                intervalId = setInterval(nextItem, interval);
+            }
+
+            showItem(currentItem);
+            startCarousel();
+
+
+            const pageNameInput = document.getElementById('pageName');
+            const pageTitleElement = document.getElementById('title');
+            if (pageNameInput && pageTitleElement) {
+                pageTitleElement.textContent = pageNameInput.value;
+            }
+        });
+    </script>
+    
+</body>
 </html>

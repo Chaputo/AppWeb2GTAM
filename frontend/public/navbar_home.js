@@ -61,8 +61,6 @@ const navBar = `
     </nav>
 `;
 
-// El modal seguirá usando las clases "modal fade", "modal-dialog", "modal-content" para un mínimo de estructura visual,
-// pero su comportamiento de "mostrar/ocultar" será gestionado por JavaScript, no por data-bs-toggle.
 const modal = `
     <div id="modal-login" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 hidden">
         <div class="bg-gray-800 text-white border border-gray-700 shadow-xl rounded-lg max-w-lg w-full mx-4 my-8 relative">
@@ -115,7 +113,7 @@ window.addEventListener('load', () => {
         document.title = "GTA Market";
     }
 
-    // --- Lógica de Navbar con Tailwind CSS y JS ---
+
     const navbarToggle = document.getElementById('navbar-toggle');
     const navbarContent = document.getElementById('navbarSupportedContent');
 
@@ -123,13 +121,11 @@ window.addEventListener('load', () => {
         navbarToggle.addEventListener('click', () => {
             navbarContent.classList.toggle('hidden');
             navbarContent.classList.toggle('flex');
-            // Actualizar aria-expanded para accesibilidad
             const isExpanded = navbarContent.classList.contains('flex');
             navbarToggle.setAttribute('aria-expanded', isExpanded);
         });
     }
 
-    // --- Lógica del Modal con Tailwind CSS y JS ---
     const loginButtonModal = document.getElementById('login-button-modal');
     const modalLogin = document.getElementById('modal-login');
     const closeModalButton = document.getElementById('close-modal-button');
@@ -138,8 +134,7 @@ window.addEventListener('load', () => {
     if (loginButtonModal && modalLogin && closeModalButton && closeModalFooterButton) {
         loginButtonModal.addEventListener('click', () => {
             modalLogin.classList.remove('hidden');
-            // Opcional: añadir clase para animación de entrada si la defines en CSS
-            // modalLogin.classList.add('animate-fade-in'); 
+
         });
 
         closeModalButton.addEventListener('click', () => {
@@ -150,7 +145,6 @@ window.addEventListener('load', () => {
             modalLogin.classList.add('hidden');
         });
 
-        // Cerrar modal al hacer clic fuera de él
         modalLogin.addEventListener('click', (event) => {
             if (event.target === modalLogin) {
                 modalLogin.classList.add('hidden');
@@ -182,7 +176,6 @@ function setBtnLogin() {
             const password = passwordInput.value;
 
             try {
-                // Simulación de la llamada al backend. ¡Reemplazar con tu fetch real!
                 const simulatedResponse = await new Promise(resolve => setTimeout(() => {
                     if (email === "test@example.com" && password === "password123") {
                         resolve({ ok: true, json: () => Promise.resolve({ status: true, nombre: "Usuario", apellido: "Demo" }) });
@@ -197,7 +190,6 @@ function setBtnLogin() {
                     sessionStorage.setItem('usuario', JSON.stringify(data));
                     alert(`¡Bienvenido/a ${data.nombre} ${data.apellido}!`);
 
-                    // Cerrar el modal manualmente
                     const modalLogin = document.getElementById('modal-login');
                     if (modalLogin) modalLogin.classList.add('hidden');
 
@@ -217,7 +209,7 @@ function setBtnLogin() {
 function updateNavbarForUserStatus() {
     const usuarioGuardado = JSON.parse(sessionStorage.getItem('usuario'));
     const registerBtn = document.querySelector('a[href="register/register.html"]');
-    const loginBtn = document.getElementById('login-button-modal'); // Usar el ID específico
+    const loginBtn = document.getElementById('login-button-modal');
     const logOutBtn = document.getElementById('logOutBtn');
     const userDisplay = document.getElementById('user-display');
 

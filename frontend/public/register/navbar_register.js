@@ -5,8 +5,6 @@ const navElements = [
     { title: 'Decoración', link: '../categories/catDecoracion.html' }
 ];
 
-// Esta función se encarga de actualizar el carrito al cargar la página
-// (Mantenemos esta función aquí porque la navbar tiene el contador del carrito)
 function agregarAlCarrito(producto) {
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     const existingProductIndex = carrito.findIndex(item => item.id === producto.id);
@@ -20,7 +18,6 @@ function agregarAlCarrito(producto) {
     actualizarContadorCarrito();
 }
 
-// Esta función actualiza el contador del carrito en la parte superior de la página
 function actualizarContadorCarrito() {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
@@ -29,7 +26,6 @@ function actualizarContadorCarrito() {
 
     if (contadorElement) {
         contadorElement.textContent = totalItems;
-        // Opcional: Mostrar/ocultar el contador si está en cero
         if (totalItems > 0) {
             contadorElement.classList.remove('hidden');
         } else {
@@ -93,13 +89,12 @@ const navBar = `
         </div>
     </nav>
 `;
-////
 
 let navContainer = document.querySelector('header');
 let modContainer = document.getElementById('modalContainer');
-let pageNameElement = document.getElementById('pageName'); // Usar un nombre distinto para el elemento
-let pageName = pageNameElement ? pageNameElement.value : ''; // Asegurarse de que el elemento existe
-let titleElement = document.getElementById('title'); // Usar un nombre distinto para el elemento
+let pageNameElement = document.getElementById('pageName');
+let pageName = pageNameElement ? pageNameElement.value : '';
+let titleElement = document.getElementById('title');
 
 
 ////
@@ -134,7 +129,6 @@ const modal = `
         </div>
     </div>
 `;
-////
 
 
 window.addEventListener('load', () => {
@@ -151,22 +145,18 @@ window.addEventListener('load', () => {
     }
 
     setBtnLogin();
-    actualizarContadorCarrito(); // Asegurarse de que el contador del carrito se actualice al cargar
+    actualizarContadorCarrito();
 
-    // Asegurarse de que `titleElement` existe antes de intentar manipularlo
     if (titleElement) {
-        // Usa `pageName` que ya fue definida desde el elemento hidden
         titleElement.textContent = `Bienvenido a ${pageName}`;
     }
 
-    // Asegurarse de que `document.title` se establece solo si pageName tiene un valor
     if (pageName) {
         document.title = pageName;
     } else {
-        document.title = "GTA Market"; // Título por defecto si pageName no está definido
+        document.title = "GTA Market";
     }
 
-    // --- Lógica de Navbar con Tailwind CSS y JS ---
     const navbarToggle = document.getElementById('navbar-toggle');
     const navbarContent = document.getElementById('navbarSupportedContent');
 
@@ -174,13 +164,11 @@ window.addEventListener('load', () => {
         navbarToggle.addEventListener('click', () => {
             navbarContent.classList.toggle('hidden');
             navbarContent.classList.toggle('flex');
-            // Actualizar aria-expanded para accesibilidad
             const isExpanded = navbarContent.classList.contains('flex');
             navbarToggle.setAttribute('aria-expanded', isExpanded);
         });
     }
 
-    // --- Lógica del Modal con Tailwind CSS y JS ---
     const loginButtonModal = document.getElementById('login-button-modal');
     const modalLogin = document.getElementById('modal-login');
     const closeModalButton = document.getElementById('close-modal-button');
@@ -199,7 +187,6 @@ window.addEventListener('load', () => {
             modalLogin.classList.add('hidden');
         });
 
-        // Cerrar modal al hacer clic fuera de él
         modalLogin.addEventListener('click', (event) => {
             if (event.target === modalLogin) {
                 modalLogin.classList.add('hidden');
@@ -213,14 +200,13 @@ window.addEventListener('load', () => {
     if (logOutButton) {
         logOutButton.addEventListener('click', function() {
             sessionStorage.clear();
-            updateNavbarForUserStatus(); // Actualiza el navbar inmediatamente
-            window.location.reload(); // Recarga la página para reflejar el estado de la sesión
+            updateNavbarForUserStatus();
+            window.location.reload();
         });
     } else {
         console.warn("Elemento 'logOutBtn' no encontrado en la navbar.");
     }
 
-    // Llama a la función al cargar el DOM para asegurar que el estado inicial es correcto
     updateNavbarForUserStatus();
 });
 
@@ -232,12 +218,11 @@ function setBtnLogin(){
 
     if (saveDataBtn && emailInput && passwordInput) {
         saveDataBtn.addEventListener('click', async (event) => {
-            event.preventDefault(); // Evita el envío del formulario por defecto
+            event.preventDefault();
 
             const email = emailInput.value;
             const password = passwordInput.value;
 
-            // Simulación de la llamada al backend. ¡Reemplazar con tu fetch real!
             try {
                 const simulatedResponse = await new Promise(resolve => setTimeout(() => {
                     if (email === "test@example.com" && password === "password123") {
@@ -253,12 +238,11 @@ function setBtnLogin(){
                     sessionStorage.setItem('usuario', JSON.stringify(data));
                     alert(`¡Bienvenido/a ${data.nombre} ${data.apellido}!`);
 
-                    // Cerrar el modal manualmente con Tailwind JS
                     const modalLogin = document.getElementById('modal-login');
                     if (modalLogin) modalLogin.classList.add('hidden');
 
-                    updateNavbarForUserStatus(); // Actualiza el navbar después del login
-                    window.location.reload(); // Recarga la página para refrescar el estado de la UI
+                    updateNavbarForUserStatus();
+                    window.location.reload();
                 } else {
                     alert('Error al iniciar sesión: ' + (data.message || 'Correo o contraseña incorrectos.'));
                 }
@@ -272,10 +256,8 @@ function setBtnLogin(){
     }
 }
 
-// Función para actualizar la visibilidad de los botones del navbar según el estado de la sesión
 function updateNavbarForUserStatus() {
     const usuarioGuardado = JSON.parse(sessionStorage.getItem('usuario'));
-    // Asegúrate de que las rutas y IDs de los elementos sean consistentes
     const registerBtn = document.querySelector('a[href="../register/register.html"]');
     const loginBtn = document.getElementById('login-button-modal');
     const logOutBtn = document.getElementById('logOutBtn');
@@ -287,17 +269,17 @@ function updateNavbarForUserStatus() {
         if (logOutBtn) logOutBtn.classList.remove('hidden');
         if (userDisplay) {
             userDisplay.textContent = `👋 Hola, ${usuarioGuardado.nombre}`;
-            userDisplay.classList.remove('hidden'); // Mostrar el saludo al usuario
+            userDisplay.classList.remove('hidden');
         }
     } else {
         if (registerBtn) registerBtn.classList.remove('hidden');
         if (loginBtn) loginBtn.classList.remove('hidden');
         if (logOutBtn) logOutBtn.classList.add('hidden');
-        if (userDisplay) userDisplay.classList.add('hidden'); // Ocultar el saludo si no hay usuario
+        if (userDisplay) userDisplay.classList.add('hidden');
     }
 }
 
-// Llama a la función al cargar el DOM para asegurar que el estado inicial es correcto
+
 document.addEventListener('DOMContentLoaded', () => {
     updateNavbarForUserStatus();
 });
